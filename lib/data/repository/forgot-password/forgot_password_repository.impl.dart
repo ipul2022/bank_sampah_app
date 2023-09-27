@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:loginandsignup/data/base/result_entity.dart';
@@ -12,7 +14,7 @@ class ForgotPasswordRepositoryImpl implements ForgotPasswordRepository {
 
   @override
   Future<ResultEntity> forgotPassword(ForgotPassword request) async {
-    // TODO: implement submitForgotPassword
+    
     try {
       final response =
           await forgotPasswordService.submitForgotPassword(request);

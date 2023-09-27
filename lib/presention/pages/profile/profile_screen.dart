@@ -26,8 +26,9 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
     print("APP_STATE: $state");
-
+    
     if (state == AppLifecycleState.inactive) {
       // user returned to our app
       Profile();
@@ -111,20 +112,20 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
                                     SizedBox(
                                       height: 40,
                                       width: 40,
-                                      child: urlImage != null
-                                          ? CircleAvatar(
-                                              backgroundImage: AssetImage(
-                                                  "asset/images/user-circle.png"),
-                                              maxRadius: 50,
-                                            )
+                                      child:
+                                          //urlImage != null
+                                          //     ? CircleAvatar(
+                                          //         backgroundImage: AssetImage(
+                                          //             "asset/images/user-circle.png"),
+                                          //         maxRadius: 50,
+                                          //       )
                                           //   Image.asset(
                                           //    state.data.profile.image)
-
-                                          : CircleAvatar(
-                                              backgroundImage: NetworkImage(
-                                                  state.data.profile.image),
-                                              maxRadius: 50,
-                                            ),
+                                          CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                            state.data.profile.image),
+                                        maxRadius: 50,
+                                      ),
                                     ),
                                     Expanded(
                                       child: Padding(

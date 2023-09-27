@@ -151,61 +151,61 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                     color: Colors.black),
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // ignore: prefer_const_constructors
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 6, left: 16),
-                                  child: const Text(
-                                    'Saldo Anda : ',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                                // ignore: prefer_const_constructors
-                                Expanded(
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6, left: 16),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
                                   // ignore: prefer_const_constructors
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 6, left: 8),
-                                    // ignore: prefer_const_constructors
-                                    child: Text(
-                                      '${data.profile.balance}',
-                                      // ignore: prefer_const_constructors
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: const Text(
+                                      'Saldo Anda : ',
                                       style: TextStyle(
-                                          color: Colors.blue,
-                                          fontSize: 16,
+                                          fontSize: 14,
+                                          color: Colors.black,
                                           fontWeight: FontWeight.w500),
-                                      textAlign: TextAlign.left,
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 16),
-                                  child: SizedBox(
-                                    width: 80,
-                                    height: 31,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            const Color(0xFFFF7F33),
-                                      ),
-                                      onPressed: () {},
-                                      child: const Text(
-                                        "Isi Saldo",
+                                  // ignore: prefer_const_constructors
+                                  Expanded(
+                                    flex: 1,
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        '${data.profile.balance}',
+                                        // ignore: prefer_const_constructors
                                         style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.white),
+                                            color: Colors.blue,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 16),
+                                    child: SizedBox(
+                                      width: 80,
+                                      height: 31,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              const Color(0xFFFF7F33),
+                                        ),
+                                        onPressed: () {},
+                                        child: const Text(
+                                          "Isi Saldo",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -216,9 +216,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 Padding(
                   padding: const EdgeInsets.only(top: 65, left: 36),
                   child: FloatingActionButton(
-                    onPressed: () {
-                      context.go("/Profile");
-                    },
+                    onPressed: () {},
                     // Image.network('${homeState.data.profile.image}'),
                     // Icon(
                     //   Icons.account_circle,
@@ -231,17 +229,18 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     child: SizedBox(
                         height: 40,
                         width: 40,
-                        child: urlImage != null
-                            ? const CircleAvatar(
-                                backgroundImage:
-                                    AssetImage('asset/images/user-circle.png'),
-                                maxRadius: 50,
-                              )
-                            : CircleAvatar(
-                                backgroundImage:
-                                    NetworkImage(data.profile.image),
-                                maxRadius: 50,
-                              )),
+                        child:
+                            //urlImage != null
+                            //     ? const CircleAvatar(
+                            //         backgroundImage:
+                            //             AssetImage('asset/images/user-circle.png'),
+                            //         maxRadius: 50,
+                            //       )
+                            //     :
+                            CircleAvatar(
+                          backgroundImage: NetworkImage(data.profile.image),
+                          maxRadius: 50,
+                        )),
                     //  Container(
                     //   decoration: BoxDecoration(
                     //       image: DecorationImage(
@@ -267,122 +266,111 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
                           child: GestureDetector(
-                              onTap: () {},
-                              child: const Text('Layanan',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black))),
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8, left: 20),
-                                child: Expanded(
-                                  child: InkWell(
-                                    onTap: () {
-                                      context.goNamed(Routes.LayananScreen);
-                                    },
-                                    child: Container(
-                                      height: 150,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        color: const Color(0xFFF3FAFF),
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          CircleAvatar(
-                                            backgroundColor:
-                                                const Color.fromARGB(
-                                                    99, 157, 238, 254),
-                                            radius: 30,
-                                            child: Image.asset(
-                                              'asset/images/motr1.png',
-                                              width: 50,
-                                              height: 50,
-                                            ),
-                                          ),
-                                          // ignore: prefer_const_constructors
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 18),
-                                            // ignore: prefer_const_constructors
-                                            child: Text(
-                                              "Antar Jemput Sampah",
-                                              style: const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 8, right: 20, left: 20),
-                                child: Expanded(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      context.goNamed(Routes.BankSampahScreen);
-                                    },
-                                    child: Container(
-                                      height: 150,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        color: const Color(0xFFF3FAFF),
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          CircleAvatar(
-                                            backgroundColor:
-                                                const Color.fromARGB(
-                                                    99, 157, 238, 254),
-                                            radius: 30,
-                                            child: Image.asset(
-                                              'asset/images/uang.png',
-                                              width: 50,
-                                              height: 50,
-                                            ),
-                                          ),
-                                          // ignore: prefer_const_constructors
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 18),
-                                            // ignore: prefer_const_constructors
-                                            child: Text(
-                                              "Bank Sampah /& Tukar Poin",
-                                              style: const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                            onTap: () {},
+                            child: const Text(
+                              'Layanan',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black),
+                            ),
                           ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8, left: 20),
+                              child: InkWell(
+                                onTap: () {
+                                  context.goNamed(Routes.LayananScreen);
+                                },
+                                child: Container(
+                                  height: 150,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.4,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: const Color(0xFFF3FAFF),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundColor: const Color.fromARGB(
+                                            99, 157, 238, 254),
+                                        radius: 30,
+                                        child: Image.asset(
+                                          'asset/images/motr1.png',
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                      ),
+                                      // ignore: prefer_const_constructors
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 18),
+                                        // ignore: prefer_const_constructors
+                                        child: Text(
+                                          "Antar Jemput Sampah",
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 8, right: 20, left: 20),
+                              child: GestureDetector(
+                                onTap: () {
+                                  context.goNamed(Routes.BankSampahScreen);
+                                },
+                                child: Container(
+                                  height: 150,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.4,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: const Color(0xFFF3FAFF),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundColor: const Color.fromARGB(
+                                            99, 157, 238, 254),
+                                        radius: 30,
+                                        child: Image.asset(
+                                          'asset/images/uang.png',
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                      ),
+                                      // ignore: prefer_const_constructors
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 18),
+                                        // ignore: prefer_const_constructors
+                                        child: Text(
+                                          "Bank Sampah /& Tukar Poin",
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -487,18 +475,15 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                                   fontWeight: FontWeight.w400),
                                             ),
                                           ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 4, left: 5),
-                                              child: Text(
-                                                '6kg',
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Color(0xFF001F29),
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 4, left: 5),
+                                            child: Text(
+                                              '6kg',
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Color(0xFF001F29),
+                                                  fontWeight: FontWeight.w400),
                                             ),
                                           ),
                                           Padding(

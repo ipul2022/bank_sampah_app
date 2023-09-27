@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:loginandsignup/domain/model/data/new_inquiry/new_inquiry_data.dart';
 import '../../../../data/base/result_entity.dart';
 import '../../../../domain/base/authentication_header_request.dart';
 import '../../../../data/utilities/commons.dart';
@@ -22,11 +23,11 @@ class NewInquiryCubit extends Cubit<NewInquiryState> {
     print(response);
     if (response is ResultSuccess) {
       emit(
-        NewInquiryIsSuccess(message: (response).data),
+        NewInquiryIsSuccess(data: (response as ResultSuccess).data),
       );
     } else {
       emit(NewInquiryIsError(message: (response as ResultError).message));
-      print((response).message);
+      print((response).toString());
     }
   }
 }

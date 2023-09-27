@@ -14,7 +14,7 @@ class BankSampahRepositoryImpl implements BankSampahRepository {
   @override
   Future<ResultEntity<List<BankSampahData>>> fecthBankSampah(
       AuthenticationHeaderRequest header) async {
-    // TODO: implement fecthBankSampah
+    
     try {
       final response = await bankSampahService.fetchBankSampah(header);
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -38,6 +38,7 @@ class BankSampahRepositoryImpl implements BankSampahRepository {
         return ResultError(message: "");
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
       return ResultError(message: e.toString());
     }

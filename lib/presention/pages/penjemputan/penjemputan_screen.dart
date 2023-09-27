@@ -93,7 +93,7 @@ class _PenjemputanScreenState extends State<PenjemputanScreen> {
           if (state is NewInquiryIsError) {
             Commons().showSnackbarError(context, state.message!);
           } else if (state is NewInquiryIsSuccess) {
-            context.goNamed(Routes.NavigasiBar);
+            context.goNamed('/SuccessPenjemputan');
             Commons().showSnackbarInfo(context, "Add New Inquiry Berhasil");
             context.read<HomeCubit>().fecthHome();
           }

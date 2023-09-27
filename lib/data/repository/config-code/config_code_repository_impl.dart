@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:loginandsignup/data/base/result_entity.dart';
@@ -16,7 +18,6 @@ class ConfigCodeRepositoryImpl implements ConfigCodeRepository {
   @override
   Future<ResultEntity<HomeProfileData>> submitConfirmCode(
       ConfirmCodeRequest request, TokenHeaderRequest email) async {
-    // TODO: implement submitConfigCode
     try {
       final response = await configCodeService.submitConfigCode(request, email);
 

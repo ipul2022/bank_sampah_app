@@ -15,12 +15,15 @@ class AutentikasiRepositoryImpl implements AutentikasiRepository {
     try {
       final response = await autentikasiRemoteService.submitAutenikasi(request);
       
+      // ignore: avoid_print
       print("STATUS CODE : ${response.statusCode}");
+      // ignore: avoid_print
       print(response.body);
       if (response.statusCode == 201) {
         BaseRemoteResponse baseResponseObject = BaseRemoteResponse.fromJson(
             jsonDecode(response.body), (json) => null);
       jsonDecode(response.body);
+      // ignore: avoid_print
       print(baseResponseObject.data);
       if (baseResponseObject.status == null) {
         return ResultError(message: baseResponseObject.status!.message);

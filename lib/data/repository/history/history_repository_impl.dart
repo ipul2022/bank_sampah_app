@@ -12,7 +12,7 @@ class HistoryRepositoryImpl implements HistoryRepository {
   @override
   Future<ResultEntity<List>> fecthHistory(
       AuthenticationHeaderRequest header) async {
-    // TODO: implement fecthHistory
+    
     try {
       final response = await historyService.fecthHistory(header);
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -23,20 +23,25 @@ class HistoryRepositoryImpl implements HistoryRepository {
                     json as Map<String, dynamic>));
         HistoryCollectionResponse.fromJson(jsonDecode(response.body));
         if (baseResponseObject.status == null) {
+          // ignore: avoid_print
           print(baseResponseObject.status);
           return ResultError(message: baseResponseObject.status!.message);
         } else if (baseResponseObject.status?.code != 0) {
+          // ignore: avoid_print
           print(baseResponseObject.status!.code);
           return ResultError(message: "");
         } else {
+          // ignore: avoid_print
           print(baseResponseObject.data);
           return ResultSuccess(baseResponseObject.data!.toHomeRiwayatData());
         }
       } else {
+        // ignore: avoid_print
         print(response.statusCode);
         return ResultError(message: "");
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
       return ResultError(message: e.toString());
     }

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:loginandsignup/domain/model/data/detail_history/detail_history_data.dart';

@@ -18,12 +18,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController namaController = TextEditingController();
   TextEditingController whatssapController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-
   TextEditingController passController = TextEditingController();
   TextEditingController configpassController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmController = TextEditingController();
 
   void changePasswordVisibility() {
     setState(() {
@@ -112,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Commons().showSnackbarError(context, 'Registrasi Gagal');
           } else if (state is RegistrasiIsSucces) {
             Commons().showSnackbarInfo(context, "Registrasi Berhasil");
-            context.go('/AutentikasiScreen');
+            context.go('/SuccesScreen');
           }
         },
         builder: (context, state) {
@@ -422,8 +418,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         whatssapController.text,
                                         emailController.text,
                                         jeniskelaminValue,
-                                        passwordController.text,
-                                        confirmController.text,
+                                        passController.text,
+                                        configpassController.text,
                                       ));
                                 }
                               },
@@ -433,7 +429,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         TextButton(
                             onPressed: () {
-                              context.go('/LoginScreen');
+                              context.go('/login');
                             },
                             child: const Text(
                               'Sudah Punya Akun ?',

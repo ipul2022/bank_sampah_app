@@ -3,14 +3,15 @@
 import 'dart:convert';
 
 // import 'package:http/http.dart';
+import 'package:loginandsignup/data/base/result_entity.dart';
+import 'package:loginandsignup/data/model/base_response/base_remote_response.dart';
+import 'package:loginandsignup/data/model/token/token_response.dart';
+import 'package:loginandsignup/data/service/remote/cange_profile/change_profile_service.dart';
 import 'package:loginandsignup/domain/base/authentication_header_request.dart';
+import 'package:loginandsignup/domain/model/data/token/token_data.dart';
 import 'package:loginandsignup/domain/model/request/profile/profileRequest.dart';
-import '../../../domain/model/data/token/token_data.dart';
-import '../../../domain/repository/changeProfile/change_profile_repository.dart';
-import '../../base/result_entity.dart';
-import '../../model/base_response/base_remote_response.dart';
-import '../../model/token/token_response.dart';
-import '../../service/remote/cange_profile/change_profile_service.dart';
+import 'package:loginandsignup/domain/repository/changeProfile/change_profile_repository.dart';
+
 
 class ChangeProfileRepositoryImpl implements ChangeProfileRepository {
   final changeProfileService = ChangeProfileRemoteService();
@@ -26,7 +27,7 @@ class ChangeProfileRepositoryImpl implements ChangeProfileRepository {
           await changeProfileService.fetchChangeProfile(request, header);
       print("STATUS CODE: ${response.statusCode}");
       print(response.body);
-      if (response.statusCode == 200 || response.statusCode == 201) {
+      if (response.statusCode == 200 || response.statusCode == 201)  {
         // BaseRemoteResponse.fromJson(jsonDecode(response.body), (json) => null);
 
         // jsonDecode(response.body);

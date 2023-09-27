@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:loginandsignup/data/base/result_entity.dart';
@@ -14,7 +16,7 @@ class DetailHistoryRepositoryImpl implements DetailHistoryRepository {
   @override
   Future<ResultEntity<DetailHistoryData>> fecthDetailHistory(
       AuthenticationHeaderRequest header) async {
-    // TODO: implement fecthDetailHistory
+    
     try {
       final response = await detailHistoryService.fecthDetailHistory(header);
       if (response.statusCode == 200 || response.statusCode == 201) {

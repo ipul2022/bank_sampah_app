@@ -14,9 +14,9 @@ class NewInquiryInitial extends NewInquiryState {}
 class NewInquiryIsLoading extends NewInquiryState {}
 
 class NewInquiryIsSuccess extends NewInquiryState {
-  String? message;
+  NewInquiryData? data;
   NewInquiryIsSuccess({
-    this.message,
+    this.data,
   });
 }
 

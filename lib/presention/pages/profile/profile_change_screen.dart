@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, unused_field, unused_local_variable
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 part of '../pages.dart';
 
 class ChangeProfile extends StatefulWidget {
@@ -134,35 +133,26 @@ class _ChangeProfileState extends State<ChangeProfile> {
                                       padding: const EdgeInsets.only(left: 9),
                                       height: 45,
                                       width: 45,
-                                      child:
+                                      child: CircleAvatar(
+                                          maxRadius: 50,
+                                          child: image != null
+                                              ? CircleAvatar(
+                                                  maxRadius: 50,
+                                                  backgroundImage: Image.memory(
+                                                          image!
+                                                              .readAsBytesSync())
+                                                      .image)
+                                              : CircleAvatar(
+                                                  maxRadius: 50,
+                                                  backgroundImage: NetworkImage(
+                                                    widget.profileData.image,
+                                                  ),
+                                                )
 
-                                          // urlImage != ''
-                                          //     ? CircleAvatar(
-                                          //         backgroundImage: NetworkImage(urlImage),
-                                          //         maxRadius: 50,
-                                          //       )
-                                          //     :
-
-                                          CircleAvatar(
-                                              maxRadius: 50,
-                                              child: image != null
-                                                  ? CircleAvatar(
-                                                      maxRadius: 50,
-                                                      backgroundImage: AssetImage(
-                                                          'asset/images/user-circle.png'))
-                                                  : CircleAvatar(
-                                                      maxRadius: 50,
-                                                      backgroundImage:
-                                                          NetworkImage(
-                                                        widget
-                                                            .profileData.image,
-                                                      ),
-                                                    )
-
-                                              // Image.asset(
-                                              //   "asset/images/user-circle.png",
-                                              //   fit: BoxFit.contain)
-                                              )),
+                                          // Image.asset(
+                                          //   "asset/images/user-circle.png",
+                                          //   fit: BoxFit.contain)
+                                          )),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 17),
                                     child: Text(

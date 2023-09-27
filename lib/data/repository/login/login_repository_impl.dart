@@ -13,11 +13,13 @@ class LoginRepositoryImpl implements LoginRepository {
 
   @override
   Future<ResultEntity<LoginData>> submitLogin(LoginRequest request) async {
-    // TODO: implement loginUser
+    
     try {
       final response = await loginRemoteService.postlogin(request);
 
+      // ignore: avoid_print
       print("STATUS CODE: ${response.statusCode}");
+      // ignore: avoid_print
       print(response.body);
 
       if (response.statusCode == 200) {
@@ -30,6 +32,7 @@ class LoginRepositoryImpl implements LoginRepository {
         LoginResponse.fromJson(
           jsonDecode(response.body),
         );
+        // ignore: avoid_print
         print(baseResponseObject.data);
         if (baseResponseObject.status == null) {
           return ResultError();
