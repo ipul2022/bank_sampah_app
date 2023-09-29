@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_constructors
 // ignore_for_file: unused_local_variable, avoid_print
 
 part of '../pages.dart';
@@ -9,16 +9,16 @@ class Item {
   int? count;
   int? tPoint;
 
-  Item({this.itemName = '', this.value = 0, this.count = 0, this.tPoint = 0});
+  Item({this.itemName, this.value, this.count = 0, this.tPoint = 0});
 }
 
-final itemPlastik = Item(itemName: 'plastik', value: 100, count: 0, tPoint: 0);
-final itemKaca = Item(itemName: 'beling', value: 200, count: 0, tPoint: 0);
-final itemBesi = Item(itemName: 'besi', value: 300, count: 0, tPoint: 0);
-final itemKertas = Item(itemName: 'karton', value: 400, count: 0, tPoint: 0);
+var itemPlastik = Item(itemName: 'plastik', value: 100, count: 0, tPoint: 0);
+var itemKaca = Item(itemName: 'beling', value: 200, count: 0, tPoint: 0);
+var itemBesi = Item(itemName: 'besi', value: 300, count: 0, tPoint: 0);
+var itemKertas = Item(itemName: 'karton', value: 400, count: 0, tPoint: 0);
 
 class BankSampahScreen extends StatefulWidget {
-  BankSampahScreen({super.key});
+  const BankSampahScreen({super.key});
 
   @override
   State<BankSampahScreen> createState() => _BankSampahScreenState();
@@ -31,7 +31,6 @@ class _BankSampahScreenState extends State<BankSampahScreen> {
   @override
   void initState() {
     super.initState();
-    // items = [itemPlastik, itemKaca, itemBesi, itemKertas];
     BlocProvider.of<BankSampahCubit>(context).fecthBankSampah();
   }
 
@@ -44,77 +43,58 @@ class _BankSampahScreenState extends State<BankSampahScreen> {
     super.dispose();
   }
 
-  // Perlu diperhatikan bahwa dalam parameter fungsi, Anda dapat menentukan tipe data untuk 'index' dan 'name' untuk menghindari masalah tipe data yang tidak aman.
-
-  void grow1(int index, String name) {
+  //cara 1 -----------------------------------------------
+  // List<Item> item = [item1, item2, item3, item4];
+  void grow1(index, name) {
+    print(items[index].count);
     setState(() {
-      if (items[index].count == null || items[index].value == null) {
-        // Tangani nilai null di sini jika diperlukan.
-        return;
-      }
-
-      if (items[index].value == 0) {
-        // Reset count dan tPoint ke 0 jika value adalah 0.
-        items[index].count = 0;
-        items[index].tPoint = 0;
-      } else {
-        items[index].count = items[index].count! + 1;
-        items[index].tPoint = items[index].count! * items[index].value!;
-      }
-
-      // Perhitungan ulang total poin
-      var allPoint = items.fold(0, (sum, e) => (e.tPoint ?? 0) + sum);
-      setState(() {
-        point = allPoint;
-      });
+      items[index!].count = items[index].count! + 1;
+      items[index!].tPoint = items[index].count! * items[index].value!;
+    });
+    print(items[index].count);
+    var allPoint = items.fold(0, (sum, e) => sum + e.tPoint!);
+    setState(() {
+      point = allPoint;
     });
   }
 
   void decrease(int index) {
     setState(() {
-      if (items[index].count == null || items[index].value == null) {
-        // Tangani nilai null di sini jika diperlukan.
-        return;
-      }
-
       if (items[index].count! > 0) {
         items[index].count = items[index].count! - 1;
-        items[index].tPoint = items[index].count! * items[index].value!;
         point = point - items[index].value!;
       }
     });
+    // setState(() {
+    //   point = point - items[index].value!;
+    // });
   }
 
-  // //cara 1 -----------------------------------------------
-  // // List<Item> item = [item1, item2, item3, item4];
-  // void grow1(index, name) {
-  //   print(items[index].count);
-  //   setState(() {
-  //     items[index!].count = items[index].count! + 1;
-  //     items[index!].tPoint = items[index].count! * items[index].value!;
-  //   });
-  //   print(items[index].count);
-  //   var allPoint = items.fold(0, (sum, e) => sum + e.tPoint!);
-  //   setState(() {
-  //     point = allPoint;
-  //   });
-  // }
+  //cara 2 -----------------------------------------------
+  List<dynamic> size = [
+    {'Platik': 0},
+    {'Kaca/Beling': 0},
+    {'Kaleng/Besi': 0},
+    {'Kertas/Karton': 0}
+  ];
 
-  // void decrease(int index) {
-  //   setState(() {
-  //     if (items[index].count! > 0) {
-  //       items[index].count = items[index].count! - 1;
-  //       point = point - items[index].value!;
-  //     }
-  //   });
-  //   // setState(() {
-  //   //   point = point - items[index].value!;
-  //   // });
-  // }
+  void grow(index, item) {
+    setState(() {
+      size[index][item] += 1;
+    });
+//     print(index);
+  }
+
+  void decreament(index, item) {
+    setState(() {
+      size[index][item] -= 1;
+    });
+//     print(index);
+  }
 
   bool _isRadioSelected = false;
   String? groupValue;
-
+  // var _increment = BankSampahCubit(LayananRespositoryImpl())..incremeent();
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<BankSampahCubit>(context);
@@ -127,22 +107,18 @@ class _BankSampahScreenState extends State<BankSampahScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: const Color(0xFFF5F5F5),
-        centerTitle: true,
-        title: const Text('Bank Sampah',
-            style: TextStyle(
-                color: Color(0xFF001F29), fontWeight: FontWeight.w500)),
-        leading: GestureDetector(
-          onTap: () {
-            context.goNamed(Routes.NavigasiBar);
-          },
-          child: const Icon(
-            CupertinoIcons.arrow_left,
-            color: Color(0xFF001F29),
-          ),
-        ),
-      ),
+          elevation: 0,
+          backgroundColor: const Color(0xFFF5F5F5),
+          centerTitle: true,
+          title: const Text('Bank Sampah',
+              style: TextStyle(
+                  color: Color(0xFF001F29), fontWeight: FontWeight.w500)),
+          leading: GestureDetector(
+              onTap: () {
+                context.goNamed(Routes.HomeScreen, extra: 0);
+              },
+              child: const Icon(CupertinoIcons.arrow_left,
+                  color: Color(0xFF001F29)))),
       body: SingleChildScrollView(
         controller: ScrollController(),
         child: Center(
@@ -244,7 +220,6 @@ class _BankSampahScreenState extends State<BankSampahScreen> {
                         break;
                     }
                   }
-
                   return Column(
                     children: [
                       ListView.builder(
@@ -253,139 +228,140 @@ class _BankSampahScreenState extends State<BankSampahScreen> {
                         itemCount: state.data.bank_sampah.length,
                         itemBuilder: (context, index) {
                           final data = state.data.bank_sampah[index];
-
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                                top: 20, left: 20, right: 20),
-                            child: Container(
-                              height: 75,
-                              // width: MediaQuery.of(context).size.width * 1,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFFAFDFF),
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(
-                                  width: 0.5,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15),
-                                    child: Image.asset(
-                                      image[index],
-                                      width: 40,
-                                      height: 40,
+                          return Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 20, left: 20, right: 20),
+                                child: Container(
+                                  height: 75,
+                                  // width: MediaQuery.of(context).size.width * 1,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFFAFDFF),
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      width: 0.5,
+                                      color: Colors.grey,
                                     ),
                                   ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 16),
-                                      child: Text(
-                                        data.layanan,
-                                        style: const TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                        textAlign: TextAlign.start,
-                                      ),
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(bottom: 5),
-                                        child: Text(
-                                          "Berat/KG",
-                                          style: TextStyle(
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.w500,
-                                              color: Color(0xFF5A5F66)),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15),
+                                        child: Image.asset(
+                                          image[index],
+                                          width: 40,
+                                          height: 40,
                                         ),
                                       ),
-                                      Row(
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 16),
+                                          child: Text(
+                                            data.layanan,
+                                            style: const TextStyle(
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ),
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          SizedBox(
-                                            width: 25,
-                                            height: 25,
-                                            child: FittedBox(
-                                              child: FloatingActionButton(
-                                                heroTag: null,
-                                                // onPressed: () {
-                                                //   decrease(index);
-                                                // },
-                                                onPressed: () =>
-                                                    cubit.decrementQty(index),
-                                                backgroundColor:
-                                                    const Color(0xFFFF7F33),
-                                                child: const Icon(
-                                                  CupertinoIcons.minus,
-                                                  size: 30.0,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 22, right: 22),
+                                          const Padding(
+                                            padding: EdgeInsets.only(bottom: 5),
                                             child: Text(
-                                              // "${items[index].count}",
-                                              "${data.qty}",
-                                              style: const TextStyle(
-                                                fontSize: 16.0,
-                                                fontWeight: FontWeight.w400,
-                                              ),
+                                              "Berat/KG",
+                                              style: TextStyle(
+                                                  fontSize: 12.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xFF5A5F66)),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 20),
-                                            child: SizedBox(
-                                              width: 25,
-                                              height: 25,
-                                              child: FittedBox(
-                                                child: FloatingActionButton(
-                                                  heroTag: null,
-                                                  // onPressed: () {
-                                                  //   grow1(index,
-                                                  //       items[index].itemName!);
-                                                  // },
-                                                  onPressed: () =>
-                                                      cubit.incrementQty(index),
-                                                  backgroundColor:
-                                                      const Color(0xFFFF7F33),
-                                                  child: const Icon(
-                                                    CupertinoIcons.plus,
-                                                    size: 30.0,
-                                                    color: Colors.white,
+                                          Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 25,
+                                                height: 25,
+                                                child: FittedBox(
+                                                  child: FloatingActionButton(
+                                                    heroTag: null,
+                                                    onPressed: () {
+                                                      cubit.decrementQty(index);
+                                                    },
+                                                    backgroundColor:
+                                                        const Color(0xFFFF7F33),
+                                                    child: const Icon(
+                                                      CupertinoIcons.minus,
+                                                      size: 30.0,
+                                                      color: Colors.white,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 22, right: 22),
+                                                child: Text(
+                                                  "${data.qty}",
+                                                  style: const TextStyle(
+                                                    fontSize: 16.0,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 20),
+                                                child: SizedBox(
+                                                  width: 25,
+                                                  height: 25,
+                                                  child: FittedBox(
+                                                    child: FloatingActionButton(
+                                                      heroTag: null,
+                                                      onPressed: () {
+                                                        cubit.incrementQty(
+                                                            index);
+                                                      },
+                                                      backgroundColor:
+                                                          const Color(
+                                                              0xFFFF7F33),
+                                                      child: const Icon(
+                                                        CupertinoIcons.plus,
+                                                        size: 30.0,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
                                         ],
                                       )
                                     ],
-                                  )
-                                ],
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           );
                         },
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsets.only(left: 20, right: 20, top: 20),
+                        padding: EdgeInsets.only(left: 20, right: 20, top: 20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
+                            Text(
                               "Total point yang didapat :",
                               style: TextStyle(
                                 fontSize: 14.0,
@@ -394,7 +370,7 @@ class _BankSampahScreenState extends State<BankSampahScreen> {
                             ),
                             Text(
                               "${cubit.total}",
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.w400,
                                   color: Color(0xFF019BF1)),
@@ -430,25 +406,36 @@ class _BankSampahScreenState extends State<BankSampahScreen> {
                           },
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 16, right: 16, bottom: 16),
-                        child: SizedBox(
-                          height: 40,
-                          width: MediaQuery.of(context).size.width * 1,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFFF7F33),
-                              shape: ContinuousRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
+                      ListView.builder(
+                        itemCount: 1,
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        clipBehavior: Clip.none,
+                        itemBuilder: (context, index) {
+                          var item = state.data.bank_sampah[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                left: 16, right: 16, bottom: 16),
+                            child: SizedBox(
+                              height: 40,
+                              width: MediaQuery.of(context).size.width * 1,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFFFF7F33),
+                                  shape: ContinuousRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  context.goNamed(Routes.SampahPenjemputan,
+                                      extra:
+                                          AddItemModel(item.layanan, item.qty, cubit.total));
+                                },
+                                child: const Text("Selanjutnya"),
                               ),
                             ),
-                            onPressed: () {
-                              context.go("/SampahPenjemputan");
-                            },
-                            child: const Text("Selanjutnya"),
-                          ),
-                        ),
+                          );
+                        },
                       ),
                     ],
                   );

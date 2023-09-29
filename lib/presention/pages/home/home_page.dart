@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:loginandsignup/model/costum_shapes.dart';
 import 'package:loginandsignup/presention/navigasiton/route.dart';
 import 'package:loginandsignup/presention/pages/home/cubit/home_cubit.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -55,6 +56,21 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       // user quit our app temporally
     } else if (state == AppLifecycleState.resumed) {
       // app suspended
+    }
+  }
+
+  _launchWhatsApp() async {
+    // Ganti nomor telepon berikut dengan nomor WhatsApp yang ingin Anda hubungi.
+    String phoneNumber = '6285162612828';
+
+    // Buat URL WhatsApp dengan nomor telepon yang sudah ditentukan.
+    String whatsappUrl = 'https://wa.me/$phoneNumber';
+
+    if (await canLaunch(whatsappUrl)) {
+      await launch(whatsappUrl);
+    } else {
+      // Jika URL tidak dapat diluncurkan, tampilkan pesan kesalahan.
+      print('Tidak dapat membuka WhatsApp.');
     }
   }
 
@@ -194,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                               const Color(0xFFFF7F33),
                                         ),
                                         onPressed: () {
-                                          
+                                          _launchWhatsApp();
                                         },
                                         child: const Text(
                                           "Isi Saldo",

@@ -14,6 +14,7 @@ import 'package:loginandsignup/data/repository/tukar_point/tukar_point_repositor
 import 'package:loginandsignup/domain/model/request/Register/register_request.dart';
 import 'package:loginandsignup/domain/model/request/confirm_code_request/confirm_code.dart';
 import 'package:loginandsignup/domain/model/request/forgot_request/forgot_password.dart';
+import 'package:loginandsignup/presention/pages/bank_sampah/add_item_model.dart';
 
 import 'package:loginandsignup/presention/pages/bank_sampah/cubit/bank_sampah_cubit.dart';
 import 'package:loginandsignup/presention/pages/bank_sampah/radiotile.dart';
