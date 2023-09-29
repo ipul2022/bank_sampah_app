@@ -4,10 +4,10 @@
 part of '../pages.dart';
 
 class PenjemputanScreen extends StatefulWidget {
-  final String service_name;
+  final NewInquiryModel addInquiry;
   const PenjemputanScreen({
     Key? key,
-    required this.service_name,
+    required this.addInquiry,
   }) : super(key: key);
 
   @override
@@ -16,9 +16,12 @@ class PenjemputanScreen extends StatefulWidget {
 
 class _PenjemputanScreenState extends State<PenjemputanScreen> {
   String? _serviceName;
+  int? _price;
+
   @override
   void initState() {
-    _serviceName = widget.service_name;
+    _serviceName = widget.addInquiry.service_name;
+    _price = widget.addInquiry.price;
     super.initState();
   }
 
@@ -71,6 +74,50 @@ class _PenjemputanScreenState extends State<PenjemputanScreen> {
 
   DateTime pickDate = DateTime.now();
   // String formatDate = DateFormat.yMMMEd().format(DateTime.now());
+
+  double getTotal() {
+    final weightText = weightController.text;
+    final double price = _price!.toDouble();
+    final getWeight =
+        weightText.split(',').map((str) => double.tryParse(str) ?? 0.00);
+    double total = 0.00;
+    for (var weight in getWeight) {
+      total += price * weight;
+    }
+    return total;
+  }
+
+  DateTime selectedDateTime = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDateTime,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (picked != null && picked != selectedDateTime) {
+      setState(() {
+        selectedDateTime = picked;
+      });
+    }
+  }
+
+  Future<void> _selectTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(selectedDateTime),
+    );
+
+    if (picked != null) {
+      setState(() {
+        selectedDateTime = DateTime(selectedDateTime.year,
+            selectedDateTime.month, selectedDateTime.day, 0, 0, 0);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,9 +140,8 @@ class _PenjemputanScreenState extends State<PenjemputanScreen> {
           if (state is NewInquiryIsError) {
             Commons().showSnackbarError(context, state.message!);
           } else if (state is NewInquiryIsSuccess) {
-            context.goNamed('/SuccessPenjemputan');
+            context.goNamed(Routes.SuccesPenjemputan);
             Commons().showSnackbarInfo(context, "Add New Inquiry Berhasil");
-            context.read<HomeCubit>().fecthHome();
           }
         },
         child: SingleChildScrollView(
@@ -177,46 +223,52 @@ class _PenjemputanScreenState extends State<PenjemputanScreen> {
                           //   }
                           // });
 
-                          final dateFormat = DateFormat("yyyy-MM-dd HH:mm");
-                          tanggalController.text = pickDate.toString();
-                          DateTimeField(
-                            format: dateFormat,
-                            onShowPicker: (context, pickDate) async {
-                              return await showDatePicker(
-                                context: context,
-                                firstDate: DateTime(1900),
-                                initialDate: pickDate!,
-                                lastDate: DateTime(2100),
-                              ).then((DateTime? pickDate) async {
-                                if (pickDate != null) {
-                                  final time = await showTimePicker(
-                                    context: context,
-                                    initialTime:
-                                        TimeOfDay.fromDateTime(pickDate),
-                                  );
-                                  return DateTimeField.combine(pickDate, time);
-                                } else {
-                                  return pickDate;
-                                }
-                              });
-                            },
-                          );
-                        },
-                        //   final DateFormat dateFormat =
-                        //       DateFormat("yyyy-MM-dd");
-                        //   final DateTime? pickedDateTime = await showDatePicker(
-                        //     context: context,
-                        //     firstDate: DateTime(1900),
-                        //     initialDate: pickDate,
-                        //     lastDate: DateTime(2100),
-                        //   );
+                          //   final dateFormat = DateFormat("yyyy-MM-dd HH:mm");
+                          //   tanggalController.text = pickDate.toString();
+                          //   DateTimeField(
+                          //     format: dateFormat,
+                          //     onShowPicker: (context, pickDate) async {
+                          //       return await showDatePicker(
+                          //         context: context,
+                          //         firstDate: DateTime(1900),
+                          //         initialDate: pickDate!,
+                          //         lastDate: DateTime(2100),
+                          //       ).then((DateTime? pickDate) async {
+                          //         if (pickDate != null) {
+                          //           final time = await showTimePicker(
+                          //             context: context,
+                          //             initialTime:
+                          //                 TimeOfDay.fromDateTime(pickDate),
+                          //           );
+                          //           return DateTimeField.combine(pickDate, time);
+                          //         } else {
+                          //           return pickDate;
+                          //         }
+                          //       });
+                          //     },
+                          //   );
+                          // },
+                          //   final DateFormat dateFormat =
+                          //       DateFormat("yyyy-MM-dd");
+                          //   final DateTime? pickedDateTime = await showDatePicker(
+                          //     context: context,
+                          //     firstDate: DateTime(1900),
+                          //     initialDate: pickDate,
+                          //     lastDate: DateTime(2100),
+                          //   );
 
-                        //   if (pickedDateTime != null) {
-                        //     pickDate = pickedDateTime;
-                        //     tanggalController.text =
-                        //         dateFormat.format(pickedDateTime);
-                        //   }
-                        // },
+                          //   if (pickedDateTime != null) {
+                          //     pickDate = pickedDateTime;
+                          //     tanggalController.text =
+                          //         dateFormat.format(pickedDateTime);
+
+                          //   }
+                          _selectDate(context);
+
+                          tanggalController.text =
+                              DateFormat('yyyy-MM-dd HH:mm:ss')
+                                  .format(selectedDateTime);
+                        },
                         icon: const Icon(
                           Icons.calendar_month,
                           color: Colors.grey,
@@ -525,7 +577,7 @@ class _PenjemputanScreenState extends State<PenjemputanScreen> {
                             ),
                           )),
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Flexible(
@@ -547,7 +599,7 @@ class _PenjemputanScreenState extends State<PenjemputanScreen> {
                       child: Padding(
                         padding: EdgeInsets.only(top: 70, right: 20),
                         child: Text(
-                          "Rp. 25,000",
+                          '${getTotal()}',
                           style: TextStyle(
                               fontSize: 22.0, color: Color(0xFF019BF1)),
                         ),
@@ -579,7 +631,7 @@ class _PenjemputanScreenState extends State<PenjemputanScreen> {
                       setState(() {
                         BlocProvider.of<NewInquiryCubit>(context)
                             .addQuiry(NewInquiryRequest(
-                          widget.service_name,
+                          widget.addInquiry.service_name,
                           int.parse(weightController.text),
                           lokasiController.text,
                           _image!,

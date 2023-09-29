@@ -45,7 +45,7 @@ class _TukarPoint1State extends State<TukarPoint1> {
                 color: Color(0xFF001F29), fontWeight: FontWeight.w500)),
         leading: GestureDetector(
           onTap: () {
-            context.go('/BankSampahScreen');
+            context.pushNamed(Routes.BankSampahScreen);
           },
           child: const Icon(
             CupertinoIcons.arrow_left,
@@ -92,7 +92,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                           child: Card(
                             elevation: 3,
                             shape: RoundedRectangleBorder(
-                                side: const BorderSide(color: Color(0xffCEE5FF)),
+                                side:
+                                    const BorderSide(color: Color(0xffCEE5FF)),
                                 borderRadius: BorderRadius.circular(16)),
                             child: RoundedExpansionTile(
                               title: const Text(
@@ -124,7 +125,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -153,7 +155,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -182,7 +185,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -211,7 +215,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -249,7 +254,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -278,7 +284,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -307,7 +314,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -336,7 +344,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -381,7 +390,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                           child: Card(
                             elevation: 3,
                             shape: RoundedRectangleBorder(
-                                side: const BorderSide(color: Color(0xffCEE5FF)),
+                                side:
+                                    const BorderSide(color: Color(0xffCEE5FF)),
                                 borderRadius: BorderRadius.circular(16)),
                             child: RoundedExpansionTile(
                               title: const Text(
@@ -413,7 +423,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -442,7 +453,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -471,7 +483,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -500,7 +513,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -545,7 +559,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                           child: Card(
                             elevation: 3,
                             shape: RoundedRectangleBorder(
-                                side: const BorderSide(color: Color(0xffCEE5FF)),
+                                side:
+                                    const BorderSide(color: Color(0xffCEE5FF)),
                                 borderRadius: BorderRadius.circular(16)),
                             child: RoundedExpansionTile(
                               title: const Text(
@@ -577,7 +592,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -606,7 +622,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -635,7 +652,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -664,7 +682,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -711,7 +730,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                           child: Card(
                             elevation: 3,
                             shape: RoundedRectangleBorder(
-                                side: const BorderSide(color: Color(0xffCEE5FF)),
+                                side:
+                                    const BorderSide(color: Color(0xffCEE5FF)),
                                 borderRadius: BorderRadius.circular(16)),
                             child: RoundedExpansionTile(
                               title: const Text(
@@ -784,8 +804,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                             ),
                                           ),
                                           const Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 16)),
+                                              padding:
+                                                  EdgeInsets.only(top: 16)),
                                           const Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
@@ -837,8 +857,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                             ),
                                           ),
                                           const Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 16)),
+                                              padding:
+                                                  EdgeInsets.only(top: 16)),
                                           const Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
@@ -863,8 +883,7 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                     nomorTokenController,
                                                 keyboardType:
                                                     TextInputType.multiline,
-                                                inputFormatters: <
-                                                    TextInputFormatter>[
+                                                inputFormatters: <TextInputFormatter>[
                                                   FilteringTextInputFormatter
                                                       .digitsOnly
                                                 ],
@@ -890,8 +909,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                             ),
                                           ),
                                           const Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 16)),
+                                              padding:
+                                                  EdgeInsets.only(top: 16)),
                                           const Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
@@ -916,8 +935,7 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                     nominalTokenController,
                                                 keyboardType:
                                                     TextInputType.multiline,
-                                                inputFormatters: <
-                                                    TextInputFormatter>[
+                                                inputFormatters: <TextInputFormatter>[
                                                   FilteringTextInputFormatter
                                                       .digitsOnly
                                                 ],
@@ -964,7 +982,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                           child: Card(
                             elevation: 3,
                             shape: RoundedRectangleBorder(
-                                side: const BorderSide(color: Color(0xffCEE5FF)),
+                                side:
+                                    const BorderSide(color: Color(0xffCEE5FF)),
                                 borderRadius: BorderRadius.circular(16)),
                             child: RoundedExpansionTile(
                               title: const Text(
@@ -989,8 +1008,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                       child: Column(
                                         children: [
                                           const Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 16)),
+                                              padding:
+                                                  EdgeInsets.only(top: 16)),
                                           const Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
@@ -1037,8 +1056,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                             ),
                                           ),
                                           const Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 16)),
+                                              padding:
+                                                  EdgeInsets.only(top: 16)),
                                           const Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
@@ -1090,8 +1109,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                             ),
                                           ),
                                           const Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 16)),
+                                              padding:
+                                                  EdgeInsets.only(top: 16)),
                                           const Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
@@ -1115,8 +1134,7 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 controller: nomorBPJSController,
                                                 keyboardType:
                                                     TextInputType.multiline,
-                                                inputFormatters: <
-                                                    TextInputFormatter>[
+                                                inputFormatters: <TextInputFormatter>[
                                                   FilteringTextInputFormatter
                                                       .digitsOnly
                                                 ],
@@ -1142,8 +1160,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                             ),
                                           ),
                                           const Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 16)),
+                                              padding:
+                                                  EdgeInsets.only(top: 16)),
                                           const Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
@@ -1168,8 +1186,7 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                     nominalBPJSController,
                                                 keyboardType:
                                                     TextInputType.multiline,
-                                                inputFormatters: <
-                                                    TextInputFormatter>[
+                                                inputFormatters: <TextInputFormatter>[
                                                   FilteringTextInputFormatter
                                                       .digitsOnly
                                                 ],
@@ -1216,7 +1233,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                           child: Card(
                             elevation: 3,
                             shape: RoundedRectangleBorder(
-                                side: const BorderSide(color: Color(0xffCEE5FF)),
+                                side:
+                                    const BorderSide(color: Color(0xffCEE5FF)),
                                 borderRadius: BorderRadius.circular(16)),
                             child: RoundedExpansionTile(
                               title: const Text(
@@ -1248,7 +1266,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -1277,7 +1296,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -1306,7 +1326,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -1335,7 +1356,8 @@ class _TukarPoint1State extends State<TukarPoint1> {
                                                 width: 64,
                                                 height: 64,
                                                 decoration: BoxDecoration(
-                                                    color: const Color(0xFFF9FAFB),
+                                                    color:
+                                                        const Color(0xFFF9FAFB),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),

@@ -375,12 +375,12 @@ class _ChangeProfileState extends State<ChangeProfile> {
                               //     height: 40,
                               //     child: OutlinedButton(
                               //       style: OutlinedButton.styleFrom(
-                              //         side:
-                              //             const BorderSide(color: Color(0xFFFF7F33)),
+                              //         side: const BorderSide(
+                              //             color: Color(0xFFFF7F33)),
                               //         foregroundColor: const Color(0xFFFF7F33),
                               //         shape: RoundedRectangleBorder(
-                              //           borderRadius:
-                              //               BorderRadius.circular(8), // <-- Radius
+                              //           borderRadius: BorderRadius.circular(
+                              //               8), // <-- Radius
                               //         ),
                               //       ),
                               //       onPressed: () {
@@ -389,7 +389,8 @@ class _ChangeProfileState extends State<ChangeProfile> {
                               //       child: const Text(
                               //         "Ubah Password",
                               //         style: TextStyle(
-                              //             fontSize: 16, fontWeight: FontWeight.w400),
+                              //             fontSize: 16,
+                              //             fontWeight: FontWeight.w400),
                               //       ),
                               //     ),
                               //   ),

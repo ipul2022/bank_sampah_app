@@ -22,6 +22,6 @@ class BankSampahResponse implements BankSampahResponseMapper {
   Map<String, dynamic> toJson() => _$BankSampahResponseToJson(this);
   @override
   BankSampahData toBankSampahData() {
-    return BankSampahData(layanan ?? "", point!);
+    return BankSampahData(layanan ?? "", point!, 0);
   }
 }

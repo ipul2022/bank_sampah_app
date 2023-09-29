@@ -21,11 +21,11 @@ class NewInquiryRepositoryImpl implements NewInquiryRepository {
       // var streamedResponse = await multipartRequest.send();
       // var response = await Response.fromStream(streamedResponse);
       print("STATUS CODE NEW QUIRY: ${response.statusCode}");
-      print(response.data);
+      print(response.body);
       if (response.statusCode == 200 || response.statusCode == 201) {
         BaseRemoteResponse<NewInquiryResponse> baseResponseObject =
             BaseRemoteResponse<NewInquiryResponse>.fromJson(
-          jsonDecode(response.data),
+          jsonDecode(response.body),
           (json) => NewInquiryResponse.fromJson(json as Map<String, dynamic>),
         );
 

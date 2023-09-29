@@ -38,6 +38,7 @@ import '../../model/costum_shapes.dart';
 import 'dart:async';
 import '../navigasiton/route.dart';
 import 'penjemputan/cubit/new_inquiry_cubit.dart';
+import 'penjemputan/new_inquiry_model.dart';
 import 'profile/cubit/profile_change_cubit.dart';
 
 part 'registrasi/registrasi.dart';

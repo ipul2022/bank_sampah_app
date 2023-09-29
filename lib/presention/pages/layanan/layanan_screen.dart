@@ -5,6 +5,7 @@ part of '../pages.dart';
 class LayananScreen extends StatefulWidget {
   const LayananScreen({super.key});
 
+
   @override
   State<LayananScreen> createState() => _LayananScreenState();
 }
@@ -17,6 +18,8 @@ class _LayananScreenState extends State<LayananScreen>
     "asset/images/sekali_angkut.png",
     "asset/images/acara_lainnya.png",
   ];
+
+  NewInquiryModel? _addInquiry;
 
   @override
   void initState() {
@@ -76,11 +79,18 @@ class _LayananScreenState extends State<LayananScreen>
             color: Colors.blue,
           ));
         } else if (state is LayananIsSuccess) {
+          
           return ListView.builder(
             itemCount: state.data.pick_up.length,
             itemBuilder: (context, index) {
               final data = state.data.pick_up[index];
-              final imageList = image[index];
+              final imageList = index < image.length
+                  ? image[index]
+                  : "placeholder_image_path.png";
+                  _addInquiry = NewInquiryModel (
+            data.layanan, data.price,
+          );
+
               return Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
                 child: SizedBox(
@@ -99,7 +109,7 @@ class _LayananScreenState extends State<LayananScreen>
                                 setState(() {
                                   context.goNamed(
                                     Routes.PenjemputanScreen,
-                                    extra: data.layanan,
+                                    extra: _addInquiry,
                                   );
                                 });
                               },

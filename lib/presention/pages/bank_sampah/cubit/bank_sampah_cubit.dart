@@ -38,4 +38,52 @@ class BankSampahCubit extends Cubit<BankSampahState> {
   //     return layananData.price.toDouble();
 
   // }
+
+  incrementQty(int index) async {
+    var data = (state as BankSampahIsSuccess).data;
+
+    //ini bisa dihilangkan jika sudah pakai freezed X
+    emit(BankSampahIsLoading());
+
+    data.bank_sampah[index].qty++;
+    emit(
+      BankSampahIsSuccess(
+        data: LayananData(
+          data.bank_sampah,
+          data.pick_up,
+        ),
+      ),
+    );
+    // emit(state.copyWith(
+    //   data: data,
+    // ));
+    print("incrementQty");
+  }
+
+  decrementQty(int index) {
+    var data = (state as BankSampahIsSuccess).data;
+    emit(BankSampahIsLoading());
+
+    if (data.bank_sampah[index].qty > 0) {
+      data.bank_sampah[index].qty--;
+    }
+
+    emit(BankSampahIsSuccess(
+      data: LayananData(
+        data.bank_sampah,
+        data.pick_up,
+      ),
+    ));
+    print("decrementQty");
+  }
+
+  double get total {
+    if (state is! BankSampahIsSuccess) return 0;
+    var data = (state as BankSampahIsSuccess).data;
+    double itemTotal = 0.0;
+    for (var item in data.bank_sampah) {
+      itemTotal += item.qty * item.point;
+    }
+    return itemTotal;
+  }
 }

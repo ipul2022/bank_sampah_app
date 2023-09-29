@@ -58,7 +58,7 @@ class SuccessPenjemputan extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    context.go("/NavigasiBar");
+                    context.goNamed(Routes.NavigasiBar);
                   },
                   child: const Text("Kembali ke Home"),
                 ),

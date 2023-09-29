@@ -69,7 +69,7 @@ class _SampahPenjemputanState extends State<SampahPenjemputan> {
         ),
         leading: GestureDetector(
           onTap: () {
-            context.go('/BankSampahScreen');
+            context.pushNamed(Routes.BankSampahScreen);
           },
           child: const Icon(
             CupertinoIcons.arrow_left,

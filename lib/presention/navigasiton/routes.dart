@@ -11,6 +11,7 @@ import 'package:loginandsignup/presention/pages/login/login_screen.dart';
 import 'package:loginandsignup/presention/pages/navigasibar.dart';
 // import 'package:loginandsignup/pages/pages.dart';
 import 'package:loginandsignup/presention/pages/pages.dart';
+import 'package:loginandsignup/presention/pages/penjemputan/new_inquiry_model.dart';
 import '../pages/autentikasi/autentikasi.dart';
 import '../pages/profile/userModel.dart';
 import 'route.dart';
@@ -90,7 +91,7 @@ GoRouter appRouter(String path) {
                   name: Routes.BankSampahScreen,
                   builder: (context, state) {
                     BlocProvider.of<BankSampahCubit>(context).fecthBankSampah();
-                    return const BankSampahScreen();
+                    return BankSampahScreen();
                   },
                 ),
               ]),
@@ -144,9 +145,10 @@ GoRouter appRouter(String path) {
         path: "/PenjemputanScreen",
         name: "penjemputan",
         builder: (context, state) {
-          final service_name = state.extra as String;
+          final _addInquiry = state.extra as NewInquiryModel;
+
           return PenjemputanScreen(
-            service_name: service_name,
+            addInquiry: _addInquiry,
           );
         }),
     GoRoute(
@@ -156,7 +158,7 @@ GoRouter appRouter(String path) {
     ),
     GoRoute(
       path: "/SuccessPenjemputan",
-      name: "successpenjemputan",
+      name: Routes.SuccesPenjemputan,
       builder: (context, state) => const SuccessPenjemputan(),
     ),
     GoRoute(

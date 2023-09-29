@@ -93,7 +93,7 @@ class SuccesPass extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            context.go('/LoginScreen');
+                            context.go('/login');
                           },
                           child: const Text("Login"),
                         ),
