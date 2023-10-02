@@ -87,3 +87,5 @@ class BankSampahCubit extends Cubit<BankSampahState> {
     return itemTotal;
   }
 }
+
+

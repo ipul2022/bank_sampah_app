@@ -35,7 +35,7 @@ class _AutentikasiScreenState extends State<AutentikasiScreen> {
         backgroundColor: Colors.blue,
         body: BlocListener<AutentikasiCubit, AutentikasiState>(
           listener: (context, state) {
-            // TODO: implement listener
+            
             if (state is AutentikasiIsError) {
               Commons().showSnackbarError(context, state.message);
             } else if (state is AutentikasiIsSucess) {

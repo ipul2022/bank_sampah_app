@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_fir
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:loginandsignup/data/model/Riwayat/riwayat_response.dart';
 import 'package:loginandsignup/data/model/home/home_profile_response.dart';
 import 'package:loginandsignup/domain/model/data/home/home_data.dart';
+import 'package:loginandsignup/domain/model/data/home/riwayat_data.dart';
 
 import '../../../domain/model/data/home/home_profile_data.dart';
 
@@ -15,7 +17,7 @@ abstract class HomeRemoteResponseMapper {
 @JsonSerializable()
 class HomeRemoteResponse implements HomeRemoteResponseMapper {
   HomeProfileResponse? profile;
-  List? riwayat;
+  List<RiwayatCollectionResponse>? riwayat;
   HomeRemoteResponse({
     this.profile,
     this.riwayat,
@@ -27,9 +29,12 @@ class HomeRemoteResponse implements HomeRemoteResponseMapper {
 
   @override
   HomeData toHomeData() {
+    List<RiwayatData> riwayatDataList =
+        riwayat?.map((response) => response.toRiwayatData()).toList() ??
+            List.empty();
     return HomeData(
-      profile?.toHomeProfileData() ?? HomeProfileData("", "", 0, "", "", ""),
-      riwayat ?? [],
-    );
+        profile?.toHomeProfileData() ??
+            HomeProfileData(" ", " ", 0, " ", " ", " "),
+        riwayatDataList);
   }
 }

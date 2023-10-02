@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 part of '../pages.dart';
 
 class KonfirmasiPembayaranScreen extends StatefulWidget {
@@ -53,7 +55,7 @@ class _KonfirmasiPembayaranScreenState extends State<KonfirmasiPembayaranScreen>
             Commons().showSnackbarInfo(context, "Login Berhasil");
             context.go('/NavigasiBar');
           }
-          // TODO: implement listener
+      
         },
           child: SingleChildScrollView(
             

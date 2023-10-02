@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, unused_field
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unused_field, unused_element
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
 part of '../pages.dart';
@@ -116,6 +116,23 @@ class _PenjemputanScreenState extends State<PenjemputanScreen> {
             selectedDateTime.month, selectedDateTime.day, 0, 0, 0);
       });
     }
+  }
+
+  bool validate() {
+    if (lokasiController.text.isEmpty ||
+        tanggalController.text.isEmpty ||
+        jamController.text.isEmpty ||
+        menitController.text.isEmpty ||
+        weightController.text.isEmpty) {
+      Commons().showSnackbarError(context, "Semua field harus diisi.");
+      return false;
+    }
+    if (_image == null) {
+      Commons().showSnackbarError(context, 'Photo Sampah Tidak Boleh Kosong');
+      return false;
+    }
+
+    return true;
   }
 
   @override
@@ -628,16 +645,18 @@ class _PenjemputanScreenState extends State<PenjemputanScreen> {
                       ),
                     ),
                     onPressed: () {
-                      setState(() {
-                        BlocProvider.of<NewInquiryCubit>(context)
-                            .addQuiry(NewInquiryRequest(
-                          widget.addInquiry.service_name,
-                          int.parse(weightController.text),
-                          lokasiController.text,
-                          _image!,
-                          tanggalController.text,
-                        ));
-                      });
+                      if (validate()) {
+                        setState(() {
+                          BlocProvider.of<NewInquiryCubit>(context)
+                              .addQuiry(NewInquiryRequest(
+                            widget.addInquiry.service_name,
+                            int.parse(weightController.text),
+                            lokasiController.text,
+                            _image!,
+                            tanggalController.text,
+                          ));
+                        });
+                      }
                     },
                     child: const Text("Proses Penjemputan"),
                   ),

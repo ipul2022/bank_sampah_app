@@ -103,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       backgroundColor: Colors.blue,
       body: BlocConsumer<RegistrasiCubit, RegistrasiState>(
         listener: (context, state) {
-          // TODO: implement listener
+          
           if (state is RegistrasiIsError) {
             Commons().showSnackbarError(context, 'Registrasi Gagal');
           } else if (state is RegistrasiIsSucces) {

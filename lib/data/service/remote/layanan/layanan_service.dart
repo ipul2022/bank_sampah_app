@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:http/http.dart';
 import '../../../../domain/base/authentication_header_request.dart';
 import '../../../base/base_status_response.dart';

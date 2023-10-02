@@ -20,7 +20,7 @@ class ConfigPassIsError extends ConfigPassState {
 }
 
 class ConfigPassIsSuccess extends ConfigPassState {
-  final HomeProfileData data;
+  final TokenData data;
   const ConfigPassIsSuccess({
     required this.data,
   });

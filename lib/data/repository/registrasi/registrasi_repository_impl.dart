@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:loginandsignup/data/base/result_entity.dart';
@@ -14,7 +16,7 @@ class RegistrasiRepositoryImpl implements RegistrasiRepository {
   @override
   Future<ResultEntity<RegisterData>> submitRegister(
       RegisterRequest request) async {
-    // TODO: implement submitRegister
+    
     try {
       final response = await registrasiRemoteService.postRegister(request);
 

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 part of '../pages.dart';
 
 class DetailRiwayat extends StatefulWidget {

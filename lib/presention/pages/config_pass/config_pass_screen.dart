@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 part of '../pages.dart';
 
 class ConfigPass extends StatefulWidget {
@@ -37,12 +39,11 @@ class _ConfigPassState extends State<ConfigPass> {
       backgroundColor: Colors.blue,
       body: BlocListener<ConfigPassCubit, ConfigPassState>(
         listener: (context, configPassState) {
-          // TODO: implement listener
           if (configPassState is ConfigPassIsError) {
             Commons().showSnackbarError(context, 'Gagal');
           } else if (configPassState is ConfigPassIsSuccess) {
             Commons().showSnackbarInfo(context, "Terverifikasi");
-            context.go('/SuccesPass');
+            context.go("/SuccesPass");
           }
         },
         child: SingleChildScrollView(
@@ -139,7 +140,7 @@ class _ConfigPassState extends State<ConfigPass> {
                                   ? () {
                                       BlocProvider.of<ConfigPassCubit>(context)
                                           .btnConfirmCode(ConfirmCodeRequest(
-                                              code: whatssapController.text ));
+                                              code: whatssapController.text));
                                     }
                                   : null,
                               child:

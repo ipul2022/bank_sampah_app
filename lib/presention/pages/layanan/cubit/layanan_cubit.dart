@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_brace_in_string_interps, avoid_print
+// ignore_for_file: unnecessary_brace_in_string_interps, avoid_print, depend_on_referenced_packages
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';

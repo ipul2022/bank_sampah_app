@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:loginandsignup/data/base/result_entity.dart';
@@ -14,7 +16,7 @@ class TukarPointRepositoryImpl implements TukarPointRepository {
   @override
   Future<ResultEntity<TukarPointData>> fecthTukarPoint(
       AuthenticationHeaderRequest header) async {
-    // TODO: implement fecthTukarPoint
+    
     try {
       final response = await tukarPointService.fecthTukarPoint(header);
       if (response.statusCode == 200 || response.statusCode == 201) {

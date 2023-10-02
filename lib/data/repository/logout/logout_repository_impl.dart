@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:loginandsignup/data/base/result_entity.dart';
@@ -11,7 +13,7 @@ class LogoutRepositoryImpl implements LogoutRepository {
 
   @override
   Future<ResultEntity> logout(AuthenticationHeaderRequest header) async {
-    // TODO: implement logout
+    
     try {
       final response = await logoutService.submitLogout(header);
       print('STATUS CODE ${response.statusCode}');

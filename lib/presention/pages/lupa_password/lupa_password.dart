@@ -44,7 +44,7 @@ class _LupaPasswordState extends State<LupaPassword> {
           } else if (forgotPassState is ForgotPassIsSuccess) {
             Commons().showSnackbarInfo(context,
                 "Email Berhasil Terkirim ke ${whatssapController.text}");
-            context.goNamed(Routes.SuccesPass);
+            context.go("/ConfigPass");
           }
         },
         child: LayoutBuilder(builder: (context, contstraints) {

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, avoid_unnecessary_containers
+
 part of '../pages.dart';
 
 class TukarPoint1 extends StatefulWidget {

@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, avoid_print
 
 part of '../pages.dart';
 
@@ -58,7 +58,7 @@ class _PilihPembayaranScreenState extends State<PilihPembayaranScreen> {
               Commons().showSnackbarInfo(context, "Login Berhasil");
               context.go('/NavigasiBar');
             }
-            // TODO: implement listener
+            
           },
           child: SingleChildScrollView(
             child: Padding(

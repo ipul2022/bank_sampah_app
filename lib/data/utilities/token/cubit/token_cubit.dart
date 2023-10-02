@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print, unnecessary_brace_in_string_interps
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../domain/base/authentication_header_request.dart';
 import '../../../../domain/model/data/token/token_data.dart';

@@ -1,3 +1,6 @@
+
+// ignore_for_file: file_names
+
 class BankSampahData {
   String layanan;
   int point;

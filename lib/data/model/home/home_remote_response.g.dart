@@ -12,7 +12,10 @@ HomeRemoteResponse _$HomeRemoteResponseFromJson(Map<String, dynamic> json) =>
           ? null
           : HomeProfileResponse.fromJson(
               json['profile'] as Map<String, dynamic>),
-      riwayat: json['riwayat'] as List<dynamic>?,
+      riwayat: (json['riwayat'] as List<dynamic>?)
+          ?.map((e) =>
+              RiwayatCollectionResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$HomeRemoteResponseToJson(HomeRemoteResponse instance) =>

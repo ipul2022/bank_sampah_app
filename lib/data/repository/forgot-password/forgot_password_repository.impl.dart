@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:loginandsignup/data/base/result_entity.dart';
 import 'package:loginandsignup/data/model/base_response/base_remote_response.dart';
 import 'package:loginandsignup/data/service/remote/forgot-password/forgot_pass_remote_service.dart';
+import 'package:loginandsignup/domain/model/data/token/token_data.dart';
 import 'package:loginandsignup/domain/model/request/forgot_request/forgot_password.dart';
 
 import 'package:loginandsignup/domain/repository/forgot-password/forgot_password_repository.dart';
@@ -13,11 +14,11 @@ class ForgotPasswordRepositoryImpl implements ForgotPasswordRepository {
   final forgotPasswordService = ForgotPasswordRemoteService();
 
   @override
-  Future<ResultEntity> forgotPassword(ForgotPassword request) async {
+  Future<ResultEntity<TokenData>> forgotPassword(ForgotPassword request, ) async {
     
     try {
       final response =
-          await forgotPasswordService.submitForgotPassword(request);
+          await forgotPasswordService.submitForgotPassword(request,);
       print("STATUS CODE: ${response.statusCode}");
       print(response.body);
       if (response.statusCode == 200 || response.statusCode == 201) {

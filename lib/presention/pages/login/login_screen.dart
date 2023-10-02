@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -243,18 +245,21 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ),
-                          TextButton(
-                            onPressed: () {
-                              context.go('/LupaPassword');
-                            },
-                            child: const Text(
-                              'Lupa Password?',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Color(0xFFFF7F33),
-                                  fontWeight: FontWeight.w500),
-                            ),
+                          const SizedBox(
+                            height: 12,
                           ),
+                          // TextButton(
+                          //   onPressed: () {
+                          //     context.go('/LupaPassword');
+                          //   },
+                          //   child: const Text(
+                          //     'Lupa Password?',
+                          //     style: TextStyle(
+                          //         fontSize: 16,
+                          //         color: Color(0xFFFF7F33),
+                          //         fontWeight: FontWeight.w500),
+                          //   ),
+                          // ),
                           const Row(
                             children: [
                               Expanded(

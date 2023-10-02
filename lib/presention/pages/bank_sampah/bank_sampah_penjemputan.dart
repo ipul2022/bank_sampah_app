@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unused_element, unnecessary_brace_in_string_interps
 // ignore_for_file: unused_field, prefer_typing_uninitialized_variables, prefer_const_constructors
 
 part of '../pages.dart';
@@ -107,6 +107,18 @@ class _SampahPenjemputanState extends State<SampahPenjemputan> {
     super.initState();
   }
 
+  bool validate() {
+    if (lokasiController.text.isEmpty || tanggalController.text.isEmpty) {
+      Commons().showSnackbarError(context, "Semua field harus diisi.");
+      return false;
+    }
+    if (_image == null) {
+      Commons().showSnackbarError(context, 'Photo Sampah Tidak Boleh Kosong');
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,7 +147,7 @@ class _SampahPenjemputanState extends State<SampahPenjemputan> {
             //  context.read<LayananCubit>().fecthLayanan();
             context.read<AuthCubit>().checkToken();
             context.read<HomeCubit>().fecthHome();
-            context.goNamed(Routes.HomeScreen, extra: 0);
+            context.go("/SuccessPenjemputan");
           }
         },
         child: isUpdate
@@ -368,22 +380,24 @@ class _SampahPenjemputanState extends State<SampahPenjemputan> {
                             ),
                           ),
                           onPressed: () async {
-                            setState(() {
-                              isUpdate = true;
-                            });
+                            if (validate()) {
+                              setState(() {
+                                isUpdate = true;
+                              });
 
-                            await BlocProvider.of<NewInquiryCubit>(context)
-                                .addQuiry(NewInquiryRequest(
-                              _layanan!,
-                              _weight!,
-                              lokasiController.text,
-                              _image!,
-                              tanggalController.text,
-                            ));
+                              await BlocProvider.of<NewInquiryCubit>(context)
+                                  .addQuiry(NewInquiryRequest(
+                                _layanan!,
+                                _weight!,
+                                lokasiController.text,
+                                _image!,
+                                tanggalController.text,
+                              ));
 
-                            setState(() {
-                              isUpdate = false;
-                            });
+                              setState(() {
+                                isUpdate = false;
+                              });
+                            }
                           },
                           child: const Text("Proses Penjemputan"),
                         ),

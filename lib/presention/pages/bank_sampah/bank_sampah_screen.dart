@@ -124,324 +124,334 @@ class _BankSampahScreenState extends State<BankSampahScreen> {
         child: Center(
           child: Column(
             children: [
+              // Container(
+              //   height: 64,
+              //   width: MediaQuery.of(context).size.width * 1,
+              //   decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(16),
+              //       color: const Color(0xFFF5F5F5),
+              //       border: Border.all(color: Colors.grey, width: 0.3)),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       const Padding(
+              //         padding: EdgeInsets.only(left: 16),
+              //         child: Text(
+              //           "Poin anda :",
+              //           style: TextStyle(
+              //               fontSize: 14.0, fontWeight: FontWeight.w500),
+              //         ),
+              //       ),
+              //       Expanded(
+              //         child: Padding(
+              //           padding: EdgeInsets.only(left: 8),
+              //           child: Text(
+              //             "0",
+              //             style: TextStyle(
+              //                 fontSize: 16.0,
+              //                 color: Color(0xFF019BF1),
+              //                 fontWeight: FontWeight.w500),
+              //           ),
+              //         ),
+              //       ),
+              //       Padding(
+              //         padding: const EdgeInsets.only(right: 16),
+              //         child: SizedBox(
+              //           width: 100,
+              //           height: 32,
+              //           child: ElevatedButton(
+              //             style: ElevatedButton.styleFrom(
+              //               backgroundColor: const Color(0xFFFF7F33),
+              //               shape: RoundedRectangleBorder(
+              //                 borderRadius:
+              //                     BorderRadius.circular(8), // <-- Radius
+              //               ),
+              //             ),
+              //             onPressed: () {
+              //               context.go('/TukarPoint1');
+              //             },
+              //             child: const Text(
+              //               "Tukar Point",
+              //               style: TextStyle(fontSize: 12),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // ),
               Padding(
-                padding: const EdgeInsets.only(top: 26, left: 20, right: 20),
-                child: Container(
-                  height: 64,
-                  width: MediaQuery.of(context).size.width * 1,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: const Color(0xFFF5F5F5),
-                      border: Border.all(color: Colors.grey, width: 0.3)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 16),
-                        child: Text(
-                          "Poin anda :",
-                          style: TextStyle(
-                              fontSize: 14.0, fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      const Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 8),
-                          child: Text(
-                            "25.000",
-                            style: TextStyle(
-                                fontSize: 16.0,
-                                color: Color(0xFF019BF1),
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 16),
-                        child: SizedBox(
-                          width: 100,
-                          height: 32,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFFF7F33),
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(8), // <-- Radius
-                              ),
-                            ),
-                            onPressed: () {
-                              context.go('/TukarPoint1');
-                            },
-                            child: const Text(
-                              "Tukar Point",
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(top: 24),
+                padding: EdgeInsets.only(top: 0),
                 child: Text(
                   "Jumlah Sampah",
                   style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w400),
                 ),
               ),
               BlocConsumer<BankSampahCubit, BankSampahState>(
-                  listener: (context, state) {
-                if (state is BankSampahIsSuccess) {}
-              }, builder: (context, state) {
-                if (state is BankSampahIsLoading) {
-                  return const Center(
-                      child: CircularProgressIndicator(
-                    color: Colors.blue,
-                  ));
-                } else if (state is BankSampahIsSuccess) {
-                  for (var element in state.data.bank_sampah) {
-                    switch (element.layanan) {
-                      case "plastik":
-                        itemPlastik.value = element.point;
-                        print("Plastik : ${element.point}");
-                        break;
-                      case "kaca":
-                        itemKaca.value = element.point;
-                        print("Kaca : ${element.point}");
-                        break;
-                      case "besi":
-                        itemBesi.value = element.point;
-                        print("Besi : ${element.point}");
-                        break;
-                      case "kertas":
-                        itemKertas.value = element.point;
-                        print("Kertas : ${element.point}");
-                        break;
+                listener: (context, state) {
+                  if (state is BankSampahIsSuccess) {}
+                },
+                builder: (context, state) {
+                  if (state is BankSampahIsLoading) {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.blue,
+                    ));
+                  } else if (state is BankSampahIsSuccess) {
+                    for (var element in state.data.bank_sampah) {
+                      switch (element.layanan) {
+                        case "plastik":
+                          itemPlastik.value = element.point;
+                          print("Plastik : ${element.point}");
+                          break;
+                        case "kaca":
+                          itemKaca.value = element.point;
+                          print("Kaca : ${element.point}");
+                          break;
+                        case "besi":
+                          itemBesi.value = element.point;
+                          print("Besi : ${element.point}");
+                          break;
+                        case "kertas":
+                          itemKertas.value = element.point;
+                          print("Kertas : ${element.point}");
+                          break;
+                      }
                     }
-                  }
-                  return Column(
-                    children: [
-                      ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: state.data.bank_sampah.length,
-                        itemBuilder: (context, index) {
-                          final data = state.data.bank_sampah[index];
-                          return Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20, left: 20, right: 20),
-                                child: Container(
-                                  height: 75,
-                                  // width: MediaQuery.of(context).size.width * 1,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFFAFDFF),
-                                    borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(
-                                      width: 0.5,
-                                      color: Colors.grey,
+                    return Column(
+                      children: [
+                        ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: state.data.bank_sampah.length,
+                          itemBuilder: (context, index) {
+                            final data = state.data.bank_sampah[index];
+                            return Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, left: 20, right: 20),
+                                  child: Container(
+                                    height: 75,
+                                    // width: MediaQuery.of(context).size.width * 1,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFFAFDFF),
+                                      borderRadius: BorderRadius.circular(16),
+                                      border: Border.all(
+                                        width: 0.5,
+                                        color: Colors.grey,
+                                      ),
                                     ),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 15),
-                                        child: Image.asset(
-                                          image[index],
-                                          width: 40,
-                                          height: 40,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 16),
-                                          child: Text(
-                                            data.layanan,
-                                            style: const TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                            textAlign: TextAlign.start,
+                                              const EdgeInsets.only(left: 15),
+                                          child: Image.asset(
+                                            image[index],
+                                            width: 40,
+                                            height: 40,
                                           ),
                                         ),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const Padding(
-                                            padding: EdgeInsets.only(bottom: 5),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 16),
                                             child: Text(
-                                              "Berat/KG",
-                                              style: TextStyle(
-                                                  fontSize: 12.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Color(0xFF5A5F66)),
+                                              data.layanan,
+                                              style: const TextStyle(
+                                                fontSize: 16.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              textAlign: TextAlign.start,
                                             ),
                                           ),
-                                          Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 25,
-                                                height: 25,
-                                                child: FittedBox(
-                                                  child: FloatingActionButton(
-                                                    heroTag: null,
-                                                    onPressed: () {
-                                                      cubit.decrementQty(index);
-                                                    },
-                                                    backgroundColor:
-                                                        const Color(0xFFFF7F33),
-                                                    child: const Icon(
-                                                      CupertinoIcons.minus,
-                                                      size: 30.0,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 5),
+                                              child: Text(
+                                                "Berat/KG",
+                                                style: TextStyle(
+                                                    fontSize: 12.0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Color(0xFF5A5F66)),
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 22, right: 22),
-                                                child: Text(
-                                                  "${data.qty}",
-                                                  style: const TextStyle(
-                                                    fontSize: 16.0,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 20),
-                                                child: SizedBox(
+                                            ),
+                                            Row(
+                                              children: [
+                                                SizedBox(
                                                   width: 25,
                                                   height: 25,
                                                   child: FittedBox(
                                                     child: FloatingActionButton(
                                                       heroTag: null,
                                                       onPressed: () {
-                                                        cubit.incrementQty(
+                                                        cubit.decrementQty(
                                                             index);
                                                       },
                                                       backgroundColor:
                                                           const Color(
                                                               0xFFFF7F33),
                                                       child: const Icon(
-                                                        CupertinoIcons.plus,
+                                                        CupertinoIcons.minus,
                                                         size: 30.0,
                                                         color: Colors.white,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      )
-                                    ],
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 22, right: 22),
+                                                  child: Text(
+                                                    "${data.qty}",
+                                                    style: const TextStyle(
+                                                      fontSize: 16.0,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 20),
+                                                  child: SizedBox(
+                                                    width: 25,
+                                                    height: 25,
+                                                    child: FittedBox(
+                                                      child:
+                                                          FloatingActionButton(
+                                                        heroTag: null,
+                                                        onPressed: () {
+                                                          cubit.incrementQty(
+                                                              index);
+                                                        },
+                                                        backgroundColor:
+                                                            const Color(
+                                                                0xFFFF7F33),
+                                                        child: const Icon(
+                                                          CupertinoIcons.plus,
+                                                          size: 30.0,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
+                              ],
+                            );
+                          },
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(left: 20, right: 20, top: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Total point yang didapat :",
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              Text(
+                                "${cubit.total}",
+                                style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color(0xFF019BF1)),
                               ),
                             ],
-                          );
-                        },
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Total point yang didapat :",
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Text(
-                              "${cubit.total}",
-                              style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xFF019BF1)),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10.0),
-                        child: LinkedLabelRadio(
-                          label: 'Tukar di titik antar',
-                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                          value: false,
-                          groupValue: _isRadioSelected,
-                          onChanged: (bool newValue) {
-                            setState(() {
-                              _isRadioSelected = newValue;
-                            });
-                          },
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10.0),
+                          child: LinkedLabelRadio(
+                            label: 'Tukar di titik antar',
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 5.0),
+                            value: false,
+                            groupValue: _isRadioSelected,
+                            onChanged: (bool newValue) {
+                              setState(() {
+                                _isRadioSelected = newValue;
+                              });
+                            },
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10.0),
-                        child: LinkedLabelRadio(
-                          label: 'Tukar di titik antar (Drop Point)',
-                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                          value: true,
-                          groupValue: _isRadioSelected,
-                          onChanged: (bool newValue) {
-                            setState(() {
-                              _isRadioSelected = newValue;
-                            });
-                          },
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10.0),
+                          child: LinkedLabelRadio(
+                            label: 'Tukar di titik antar (Drop Point)',
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 5.0),
+                            value: true,
+                            groupValue: _isRadioSelected,
+                            onChanged: (bool newValue) {
+                              setState(() {
+                                _isRadioSelected = newValue;
+                              });
+                            },
+                          ),
                         ),
-                      ),
-                      ListView.builder(
-                        itemCount: 1,
-                        shrinkWrap: true,
-                        padding: EdgeInsets.zero,
-                        clipBehavior: Clip.none,
-                        itemBuilder: (context, index) {
-                          var item = state.data.bank_sampah[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                                left: 16, right: 16, bottom: 16),
-                            child: SizedBox(
-                              height: 40,
-                              width: MediaQuery.of(context).size.width * 1,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFFFF7F33),
-                                  shape: ContinuousRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16),
+                        ListView.builder(
+                          itemCount: 1,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          clipBehavior: Clip.none,
+                          itemBuilder: (context, index) {
+                            var item = state.data.bank_sampah[index];
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 16, right: 16, bottom: 16),
+                              child: SizedBox(
+                                height: 40,
+                                width: MediaQuery.of(context).size.width * 1,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFFFF7F33),
+                                    shape: ContinuousRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
                                   ),
+                                  onPressed: () {
+                                    context.goNamed(Routes.SampahPenjemputan,
+                                        extra: AddItemModel(item.layanan,
+                                            item.qty, cubit.total));
+                                  },
+                                  child: const Text("Selanjutnya"),
                                 ),
-                                onPressed: () {
-                                  context.goNamed(Routes.SampahPenjemputan,
-                                      extra:
-                                          AddItemModel(item.layanan, item.qty, cubit.total));
-                                },
-                                child: const Text("Selanjutnya"),
                               ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  );
-                }
-                return Container();
-              }),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  }
+                  return Container();
+                },
+              ),
             ],
           ),
         ),

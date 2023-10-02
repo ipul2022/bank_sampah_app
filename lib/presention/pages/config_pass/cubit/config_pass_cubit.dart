@@ -1,12 +1,13 @@
+// ignore_for_file: depend_on_referenced_packages, avoid_print
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:loginandsignup/data/base/result_entity.dart';
 import 'package:loginandsignup/data/utilities/commons.dart';
 import 'package:loginandsignup/domain/base/token_request_header.dart';
-import 'package:loginandsignup/domain/model/data/home/home_profile_data.dart';
+import 'package:loginandsignup/domain/model/data/token/token_data.dart';
 import 'package:loginandsignup/domain/model/request/confirm_code_request/confirm_code.dart';
 import 'package:loginandsignup/domain/repository/confrim_code/config_code_repository.dart';
-
 
 part 'config_pass_state.dart';
 
@@ -17,7 +18,8 @@ class ConfigPassCubit extends Cubit<ConfigPassState> {
   Future<void> btnConfirmCode(ConfirmCodeRequest request) async {
     print('Fetch Confirm Code ');
     emit(ConfigPassIsLoading());
-    final response = await repository.submitConfirmCode(request,TokenHeaderRequest('',''));
+    final response =
+        await repository.submitConfirmCode(request, TokenHeaderRequest('', ''));
     final token = await Commons().getUid();
     print('Token : $token');
 
@@ -26,7 +28,7 @@ class ConfigPassCubit extends Cubit<ConfigPassState> {
         ConfigPassIsSuccess(data: (response as ResultSuccess).data),
       );
       final data = (state as ConfigPassIsSuccess).data;
-      Commons().setUid(data.email.toString());
+      Commons().setUid(data.token.toString());
     } else if (response is ResultError) {
       emit(ConfigPassIsError(message: (response as ResultError).message));
     }

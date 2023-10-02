@@ -4,19 +4,19 @@ import 'dart:convert';
 
 import 'package:loginandsignup/data/base/result_entity.dart';
 import 'package:loginandsignup/data/model/base_response/base_remote_response.dart';
-import 'package:loginandsignup/data/model/home/home_profile_response.dart';
+
+import 'package:loginandsignup/data/model/token/token_response.dart';
 import 'package:loginandsignup/data/service/remote/cinfirm_code/config_code_remote_service.dart';
 import 'package:loginandsignup/domain/base/token_request_header.dart';
-import 'package:loginandsignup/domain/model/data/home/home_profile_data.dart';
+
 import 'package:loginandsignup/domain/model/request/confirm_code_request/confirm_code.dart';
 import 'package:loginandsignup/domain/repository/confrim_code/config_code_repository.dart';
-
 
 class ConfigCodeRepositoryImpl implements ConfigCodeRepository {
   final configCodeService = ConfigCodeRemoteService(email: '');
 
   @override
-  Future<ResultEntity<HomeProfileData>> submitConfirmCode(
+  Future<ResultEntity> submitConfirmCode(
       ConfirmCodeRequest request, TokenHeaderRequest email) async {
     try {
       final response = await configCodeService.submitConfigCode(request, email);
@@ -25,13 +25,11 @@ class ConfigCodeRepositoryImpl implements ConfigCodeRepository {
       print(response.body);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        BaseRemoteResponse<HomeProfileResponse> baseResponseObject =
-            BaseRemoteResponse.fromJson(
-                jsonDecode(response.body),
-                (json) =>
-                    HomeProfileResponse.fromJson(json as Map<String, dynamic>));
+        BaseRemoteResponse<TokenResponse> baseResponseObject =
+            BaseRemoteResponse.fromJson(jsonDecode(response.body),
+                (json) => TokenResponse.fromJson(json as Map<String, dynamic>));
 
-        HomeProfileResponse.fromJson(
+        TokenResponse.fromJson(
           jsonDecode(response.body),
         );
 
@@ -42,7 +40,7 @@ class ConfigCodeRepositoryImpl implements ConfigCodeRepository {
         } else if (baseResponseObject.data == null) {
           return ResultError(message: baseResponseObject.status?.message);
         } else {
-          return ResultSuccess(baseResponseObject.data!.toHomeProfileData());
+          return ResultSuccess(baseResponseObject.data!.toTokenData());
         }
       } else {
         return ResultError(message: response.body);
