@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_null_comparison
+// ignore_for_file: prefer_const_constructors, avoid_print, unnecessary_string_interpolations
 
 part of '../pages.dart';
 
@@ -9,35 +9,74 @@ class Profile extends StatefulWidget {
   State<Profile> createState() => _ProfileState();
 }
 
-class _ProfileState extends State<Profile> with WidgetsBindingObserver {
+class _ProfileState extends State<Profile> {
   UserModel? _userModel;
   String urlImage = "";
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addObserver(this);
+  // }
 
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   WidgetsBinding.instance.removeObserver(this);
+  //   super.dispose();
+  // }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    // ignore: avoid_print
-    print("APP_STATE: $state");
-    
-    if (state == AppLifecycleState.inactive) {
-      // user returned to our app
-      Profile();
-    } else if (state == AppLifecycleState.inactive) {
-      // app is inactive
-    } else if (state == AppLifecycleState.paused) {
-      // user quit our app temporally
-    } else if (state == AppLifecycleState.resumed) {
-      // app suspended
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   print("APP_STATE: $state");
+
+  //   if (state == AppLifecycleState.inactive) {
+  //     // user returned to our app
+  //     Profile();
+  //   } else if (state == AppLifecycleState.inactive) {
+  //     // app is inactive
+  //   } else if (state == AppLifecycleState.paused) {
+  //     // user quit our app temporally
+  //   } else if (state == AppLifecycleState.resumed) {
+  //     // app suspended
+  //   }
+  // }
+  // WebViewController? _controller;
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _controller = WebViewController()
+  //     ..setJavaScriptMode(JavaScriptMode.unrestricted)
+  //     ..setBackgroundColor(const Color(0x00000000))
+  //     ..setNavigationDelegate(
+  //       NavigationDelegate(
+  //         onProgress: (int progress) {
+  //           // Update loading bar.
+  //         },
+  //         onPageStarted: (String url) {},
+  //         onPageFinished: (String url) {},
+  //         onWebResourceError: (WebResourceError error) {},
+  //         onNavigationRequest: (NavigationRequest request) {
+  //           if (request.url.startsWith('https://www.youtube.com/')) {
+  //             return NavigationDecision.prevent;
+  //           }
+  //           return NavigationDecision.navigate;
+  //         },
+  //       ),
+  //     )
+  //     ..loadRequest(Uri.parse('https://phlox.rohisyam.online/'));
+  // }
+
+  _launchWhatsApp() async {
+    // Ganti nomor telepon berikut dengan nomor WhatsApp yang ingin Anda hubungi.
+    String phoneNumber = '6285162612828';
+
+    // Buat URL WhatsApp dengan nomor telepon yang sudah ditentukan.
+    String whatsappUrl = 'https://wa.me/$phoneNumber';
+
+    if (await canLaunch(whatsappUrl)) {
+      await launch(whatsappUrl);
+    } else {
+      // Jika URL tidak dapat diluncurkan, tampilkan pesan kesalahan.
+      print('Tidak dapat membuka WhatsApp.');
     }
   }
 
@@ -112,20 +151,22 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
                                     SizedBox(
                                       height: 40,
                                       width: 40,
-                                      child:
-                                          //urlImage != null
-                                          //     ? CircleAvatar(
-                                          //         backgroundImage: AssetImage(
-                                          //             "asset/images/user-circle.png"),
-                                          //         maxRadius: 50,
-                                          //       )
+                                      child: urlImage != ""
+                                          ?
                                           //   Image.asset(
                                           //    state.data.profile.image)
+
                                           CircleAvatar(
-                                        backgroundImage: NetworkImage(
-                                            state.data.profile.image),
-                                        maxRadius: 50,
-                                      ),
+                                              backgroundImage: NetworkImage(
+                                                state.data.profile.image,
+                                              ),
+                                              maxRadius: 50,
+                                            )
+                                          : Icon(
+                                              Icons.account_circle,
+                                              size: 40,
+                                              color: Colors.grey,
+                                            ),
                                     ),
                                     Expanded(
                                       child: Padding(
@@ -251,7 +292,9 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
                                                     BorderRadius.circular(16),
                                               ),
                                             ),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              _launchWhatsApp();
+                                            },
                                             child: const Text(
                                               "Isi Saldo",
                                               style: TextStyle(
@@ -271,52 +314,58 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 12, left: 0),
-                          child: const Text('Riwayat',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 12, right: 0),
-                          child: TextButton(
-                            onPressed: () {
-                              context.go("/RiwayatScreen");
-                            },
-                            child: Row(
-                              children: const [
-                                Text(
-                                  'Lihat semua',
-                                  style: TextStyle(
-                                      color: Color(0xFFFF7F33),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios_outlined,
-                                  size: 14,
-                                  color: Color(0xFFFF7F33),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                     Column(
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 12, left: 0),
+                              child: const Text('Riwayat',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black)),
+                            ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(top: 12, right: 0),
+                            //   child: TextButton(
+                            //     onPressed: () {
+                            //       context.go("/RiwayatScreen");
+                            //     },
+                            //     child: Row(
+                            //       children: const [
+                            //         Text(
+                            //           'Lihat semua',
+                            //           style: TextStyle(
+                            //               color: Color(0xFFFF7F33),
+                            //               fontSize: 14,
+                            //               fontWeight: FontWeight.w400),
+                            //         ),
+                            //         Icon(
+                            //           Icons.arrow_forward_ios_outlined,
+                            //           size: 14,
+                            //           color: Color(0xFFFF7F33),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
+                        ),
                         Padding(
                           padding:
                               const EdgeInsets.only(left: 0, right: 0, top: 0),
-                          child: state.data.riwayat == null
-                              ? Container(
+                          child: ListView.builder(
+                              itemCount: 1,
+                              shrinkWrap: true,
+                              padding: EdgeInsets.zero,
+                              clipBehavior: Clip.none,
+                              itemBuilder: (context, index) {
+                                var item = state.data.riwayat[index];
+                                return Container(
                                   width: MediaQuery.of(context).size.width,
-                                  height: 120,
+                                  height: 80,
                                   decoration: BoxDecoration(
                                     color: const Color(0xFFFAFDFF),
                                     borderRadius: BorderRadius.circular(16),
@@ -334,7 +383,7 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
                                             padding: const EdgeInsets.only(
                                                 top: 16, left: 16),
                                             child: Text(
-                                              '12 Januari 2023',
+                                              '${item.date}',
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   color:
@@ -346,7 +395,7 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
                                             padding: const EdgeInsets.only(
                                                 top: 16, right: 16),
                                             child: Text(
-                                              '+150pt',
+                                              '${item.point}pt',
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   color: Color(0xFFA7ABB3),
@@ -358,7 +407,7 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
-                                        children: const [
+                                        children: [
                                           Padding(
                                             padding: EdgeInsets.only(
                                                 top: 4, left: 16),
@@ -375,7 +424,7 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
                                               padding: EdgeInsets.only(
                                                   top: 4, left: 5),
                                               child: Text(
-                                                '4kg',
+                                                '${item.weight}Kg',
                                                 style: TextStyle(
                                                     fontSize: 16,
                                                     color: Color(0xFF001F29),
@@ -390,7 +439,7 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
                                               right: 16,
                                             ),
                                             child: Text(
-                                              'Rp15.000',
+                                              'Rp ${item.revenue}',
                                               style: TextStyle(
                                                   fontSize: 16,
                                                   color: Color(0xFF019BF1),
@@ -399,52 +448,45 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
                                           ),
                                         ],
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 10, right: 16, left: 16),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              1,
-                                          height: 40,
-                                          child: OutlinedButton(
-                                            style: OutlinedButton.styleFrom(
-                                              side: BorderSide(
-                                                  color: Color(0xFFFF7F33)),
-                                              foregroundColor:
-                                                  Color(0xFFFF7F33),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        12), // <-- Radius
-                                              ),
-                                            ),
-                                            onPressed: () {
-                                              context.go('/DetailRiwayat');
-                                            },
-                                            child: const Text("Lihat Detail",
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.w400)),
-                                          ),
-                                        ),
-                                      ),
+                                      // Padding(
+                                      //   padding: const EdgeInsets.only(
+                                      //       top: 10, right: 16, left: 16),
+                                      //   child: SizedBox(
+                                      //     width: MediaQuery.of(context)
+                                      //             .size
+                                      //             .width *
+                                      //         1,
+                                      //     height: 40,
+                                      //     child: OutlinedButton(
+                                      //       style: OutlinedButton.styleFrom(
+                                      //         side: BorderSide(
+                                      //             color: Color(0xFFFF7F33)),
+                                      //         foregroundColor:
+                                      //             Color(0xFFFF7F33),
+                                      //         shape: RoundedRectangleBorder(
+                                      //           borderRadius:
+                                      //               BorderRadius.circular(
+                                      //                   12), // <-- Radius
+                                      //         ),
+                                      //       ),
+                                      //       onPressed: () {
+                                      //         context.go('/DetailRiwayat');
+                                      //       },
+                                      //       child: const Text("Lihat Detail",
+                                      //           style: TextStyle(
+                                      //               fontSize: 12,
+                                      //               fontWeight:
+                                      //                   FontWeight.w400)),
+                                      //     ),
+                                      //   ),
+                                      // ),
                                     ],
                                   ),
-                                )
-                              : const Center(
-                                  child: Text(
-                                    'Belum ada riwayat anatar jemput\nYuk mulai bereskan sampah mu',
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ),
+                                );
+                              }),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),

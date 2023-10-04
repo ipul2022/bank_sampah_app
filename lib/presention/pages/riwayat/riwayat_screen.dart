@@ -66,7 +66,8 @@ class _RiwayatScreenState extends State<RiwayatScreen> {
                                 children: [
                                   // ignore: prefer_const_constructors
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 16, left: 16),
+                                    padding: const EdgeInsets.only(
+                                        top: 16, left: 16),
                                     // ignore: prefer_const_constructors
                                     child: Text(
                                       '${data.date}',
@@ -78,13 +79,13 @@ class _RiwayatScreenState extends State<RiwayatScreen> {
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 16, right: 16),
+                                    padding: const EdgeInsets.only(
+                                        top: 16, right: 16),
                                     child: Text(
-                                      '${data.point}',
+                                      '${data.point}pt',
                                       style: const TextStyle(
                                           fontSize: 12,
-                                          color:  Color(0xFFA7ABB3),
+                                          color: Color(0xFFA7ABB3),
                                           fontWeight: FontWeight.w400),
                                     ),
                                   ),
@@ -96,9 +97,9 @@ class _RiwayatScreenState extends State<RiwayatScreen> {
                                 children: [
                                   const Padding(
                                     padding: EdgeInsets.only(top: 4, left: 16),
-                                    child:  Text(
+                                    child: Text(
                                       'Berat Sampah :',
-                                      style:  TextStyle(
+                                      style: TextStyle(
                                           fontSize: 16,
                                           color: Color(0xFF001F29),
                                           fontWeight: FontWeight.w400),
@@ -106,9 +107,10 @@ class _RiwayatScreenState extends State<RiwayatScreen> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsets.only(top: 4, left: 5),
+                                      padding: const EdgeInsets.only(
+                                          top: 4, left: 5),
                                       child: Text(
-                                        '${data.point}',
+                                        '${data.weight}Kg',
                                         style: const TextStyle(
                                             fontSize: 16,
                                             color: Color(0xFF001F29),

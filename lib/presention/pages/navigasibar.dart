@@ -24,7 +24,7 @@ class _NavigasiBarState extends State<NavigasiBar> {
   int navigasiBar = 0;
   final screen = [
     const HomeScreen(),
-    const Profile(),
+    Profile(),
   ];
   @override
   void initState() {

@@ -1,7 +1,27 @@
 part of '../pages.dart';
 
-class SuccessPenjemputan extends StatelessWidget {
+class SuccessPenjemputan extends StatefulWidget {
   const SuccessPenjemputan({super.key});
+
+  @override
+  State<SuccessPenjemputan> createState() => _SuccessPenjemputanState();
+}
+
+class _SuccessPenjemputanState extends State<SuccessPenjemputan> {
+  _launchWhatsApp() async {
+    // Ganti nomor telepon berikut dengan nomor WhatsApp yang ingin Anda hubungi.
+    String phoneNumber = '6285162612828';
+
+    // Buat URL WhatsApp dengan nomor telepon yang sudah ditentukan.
+    String whatsappUrl = 'https://wa.me/$phoneNumber';
+
+    if (await canLaunch(whatsappUrl)) {
+      await launch(whatsappUrl);
+    } else {
+      // Jika URL tidak dapat diluncurkan, tampilkan pesan kesalahan.
+      print('Tidak dapat membuka WhatsApp.');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +56,7 @@ class SuccessPenjemputan extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.only(top: 8),
                       child: Text(
-                        'Kamu telah berhasil menabung sampah,\ndengan ini kamu sudah membantu\nmenjaga lingkungan',
+                        'Terimakasih sudah menggunakan layanan kami,\nsampah anda akan di ambil oleh petugas,\nsilakan konfirmasi',
                         style: TextStyle(fontSize: 14, color: Colors.grey),
                         textAlign: TextAlign.center,
                       ),
@@ -58,9 +78,10 @@ class SuccessPenjemputan extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
+                    _launchWhatsApp();
                     context.goNamed(Routes.NavigasiBar);
                   },
-                  child: const Text("Kembali ke Home"),
+                  child: const Text("Hubungi Petugas"),
                 ),
               ),
             ),

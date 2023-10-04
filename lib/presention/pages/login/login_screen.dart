@@ -8,6 +8,7 @@ import 'package:logger/logger.dart';
 import 'package:loginandsignup/data/repository/login/login_repository_impl.dart';
 import 'package:loginandsignup/data/utilities/commons.dart';
 import 'package:loginandsignup/domain/model/request/login/login_request.dart';
+import 'package:loginandsignup/presention/pages/home/cubit/home_cubit.dart';
 import 'package:loginandsignup/presention/pages/login/cubit/login_cubit.dart';
 
 import '../../../data/utilities/auth_cubit.dart';
@@ -75,6 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
             } else if (state is LoginSucces) {
               Commons().showSnackbarInfo(context, "Login Berhasil");
               context.read<AuthCubit>().checkToken();
+              context.read<HomeCubit>().fecthHome();
               context.go('/NavigasiBar');
             }
           },
@@ -132,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  'Nomor Whatsapp/Email',
+                                  'UserName',
                                   style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.black,
@@ -155,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       const EdgeInsets.fromLTRB(10, 0, 0, 0),
                                   filled: true,
                                   fillColor: Colors.white,
-                                  hintText: "081234567890",
+                                  hintText: "User Name",
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),

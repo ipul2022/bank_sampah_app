@@ -8,10 +8,12 @@ import 'package:loginandsignup/data/repository/forgot-password/forgot_password_r
 import 'package:loginandsignup/data/repository/home/home_repository_impl.dart';
 import 'package:loginandsignup/data/repository/layanan/layanan_repository_impl.dart';
 import 'package:loginandsignup/data/repository/login/login_repository_impl.dart';
+import 'package:loginandsignup/data/repository/point/point_repository_impl.dart';
 import 'package:loginandsignup/data/repository/registrasi/registrasi_repository_impl.dart';
 import 'package:loginandsignup/data/repository/tukar_point/tukar_point_repository_impl.dart';
 import 'package:loginandsignup/presention/navigasiton/routes.dart';
 import 'package:loginandsignup/presention/pages/autentikasi/cubit/autentikasi_cubit.dart';
+import 'package:loginandsignup/presention/pages/bank_sampah/cubit/point_cubit.dart';
 import 'package:loginandsignup/presention/pages/home/cubit/home_cubit.dart';
 import 'package:loginandsignup/presention/pages/layanan/cubit/layanan_cubit.dart';
 import 'package:loginandsignup/presention/pages/login/cubit/login_cubit.dart';
@@ -83,6 +85,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => NewInquiryCubit(NewInquiryRepositoryImpl()),
+        ),
+        BlocProvider(
+          create: (context) => PointCubit(PointRespositoryImpl()),
         ),
       ],
       child: BlocBuilder<AuthCubit, AuthState>(

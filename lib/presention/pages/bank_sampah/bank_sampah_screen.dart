@@ -124,65 +124,84 @@ class _BankSampahScreenState extends State<BankSampahScreen> {
         child: Center(
           child: Column(
             children: [
-              // Container(
-              //   height: 64,
-              //   width: MediaQuery.of(context).size.width * 1,
-              //   decoration: BoxDecoration(
-              //       borderRadius: BorderRadius.circular(16),
-              //       color: const Color(0xFFF5F5F5),
-              //       border: Border.all(color: Colors.grey, width: 0.3)),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       const Padding(
-              //         padding: EdgeInsets.only(left: 16),
-              //         child: Text(
-              //           "Poin anda :",
-              //           style: TextStyle(
-              //               fontSize: 14.0, fontWeight: FontWeight.w500),
-              //         ),
-              //       ),
-              //       Expanded(
-              //         child: Padding(
-              //           padding: EdgeInsets.only(left: 8),
-              //           child: Text(
-              //             "0",
-              //             style: TextStyle(
-              //                 fontSize: 16.0,
-              //                 color: Color(0xFF019BF1),
-              //                 fontWeight: FontWeight.w500),
-              //           ),
-              //         ),
-              //       ),
-              //       Padding(
-              //         padding: const EdgeInsets.only(right: 16),
-              //         child: SizedBox(
-              //           width: 100,
-              //           height: 32,
-              //           child: ElevatedButton(
-              //             style: ElevatedButton.styleFrom(
-              //               backgroundColor: const Color(0xFFFF7F33),
-              //               shape: RoundedRectangleBorder(
-              //                 borderRadius:
-              //                     BorderRadius.circular(8), // <-- Radius
-              //               ),
-              //             ),
-              //             onPressed: () {
-              //               context.go('/TukarPoint1');
-              //             },
-              //             child: const Text(
-              //               "Tukar Point",
-              //               style: TextStyle(fontSize: 12),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // ),
               Padding(
-                padding: EdgeInsets.only(top: 0),
+                padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                child: Container(
+                  height: 64,
+                  width: MediaQuery.of(context).size.width * 1,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: const Color(0xFFF5F5F5),
+                      border: Border.all(color: Colors.grey, width: 0.3)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 16),
+                        child: Text(
+                          "Poin anda :",
+                          style: TextStyle(
+                              fontSize: 14.0, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 8),
+                          child: BlocBuilder<PointCubit, PointState>(
+                              builder: (context, state) {
+                            if (state is PointIsLoading) {
+                              return const Center(
+                                  child: CircularProgressIndicator(
+                                color: Colors.blue,
+                              ));
+                            } else if (state is PointIsSuccess) {
+                              return Text(
+                                "${state.data.point}",
+                                style: TextStyle(
+                                    fontSize: 16.0,
+                                    color: Color(0xFF019BF1),
+                                    fontWeight: FontWeight.w500),
+                              );
+                            }
+                            return Text(
+                              "0",
+                              style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: Color(0xFF019BF1),
+                                  fontWeight: FontWeight.w500),
+                            );
+                          }),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: SizedBox(
+                          width: 100,
+                          height: 32,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFFF7F33),
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(8), // <-- Radius
+                              ),
+                            ),
+                            onPressed: () {
+                              context.go('/TukarPoint1');
+                            },
+                            child: const Text(
+                              "Tukar Point",
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
                 child: Text(
                   "Jumlah Sampah",
                   style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w400),
