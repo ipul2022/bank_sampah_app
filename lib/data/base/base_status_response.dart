@@ -8,7 +8,7 @@ abstract class BaseConfig {
   static const String CONFIG_KODE = '/validate-forget-password';
   static const String HOME_URL = '/user-data';
   static const String HISTORY = '/history';
-  static const String DETAIL_HISTORY = '/history/:id';
+  static const String DETAIL_HISTORY = '/detail-transaction';
   static const String REGISTER_URL = "/signup";
   static const String POINT_URL = "/point";
   static const String BANK_SAMPAH = "/trash";
@@ -18,6 +18,7 @@ abstract class BaseConfig {
   static const String fetchChangeProfile = '/change-profile';
   static const String fetchQuiry = '/new-inquiry';
   static const String fetchPoint = '/my-point';
+  static const String fetchHistory = '/transaction-history';
 
   static const String fetchToken = '/refresh';
 }

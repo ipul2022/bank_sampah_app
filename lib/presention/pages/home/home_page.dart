@@ -9,6 +9,7 @@ import 'package:loginandsignup/presention/pages/bank_sampah/cubit/bank_sampah_cu
 import 'package:loginandsignup/presention/pages/bank_sampah/cubit/point_cubit.dart';
 import 'package:loginandsignup/presention/pages/home/cubit/home_cubit.dart';
 import 'package:loginandsignup/presention/pages/layanan/cubit/layanan_cubit.dart';
+import 'package:loginandsignup/presention/pages/riwayat/cubit/history_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -411,199 +412,213 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                         ),
                       ],
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // ignore: prefer_const_constructors
                         Padding(
-                          padding: EdgeInsets.only(top: 12, left: 20),
-                          child: Text('Riwayat',
+                          padding: const EdgeInsets.only(top: 12, left: 20),
+                          child: const Text('Riwayat',
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black)),
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(top: 12, right: 20),
-                        //   child: TextButton(
-                        //     onPressed: () {
-                        //       context.go("/RiwayatScreen");
-                        //     },
-                        //     child: const Row(
-                        //       // ignore: prefer_const_literals_to_create_immutables
-                        //       children: [
-                        //         // ignore: prefer_const_constructors
-                        //         Text(
-                        //           'Lihat semua',
-                        //           style: TextStyle(
-                        //               color: Color(0xFFFF7F33),
-                        //               fontSize: 14,
-                        //               fontWeight: FontWeight.w400),
-                        //         ),
-                        //         // ignore: prefer_const_constructors
-                        //         Icon(
-                        //           Icons.arrow_forward_ios_outlined,
-                        //           size: 14,
-                        //           color: Color(0xFFFF7F33),
-                        //         ),
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12, right: 20),
+                          child: TextButton(
+                            onPressed: () {
+                              context.pushNamed(Routes.RiwayatScreen);
+                              context.read<HistoryCubit>().fecthHistory();
+                            },
+                            child: const Row(
+                              // ignore: prefer_const_literals_to_create_immutables
+                              children: [
+                                // ignore: prefer_const_constructors
+                                Text(
+                                  'Lihat semua',
+                                  style: TextStyle(
+                                      color: Color(0xFFFF7F33),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                // ignore: prefer_const_constructors
+                                Icon(
+                                  Icons.arrow_forward_ios_outlined,
+                                  size: 14,
+                                  color: Color(0xFFFF7F33),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(
                       height: 12,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: BlocBuilder<HomeCubit, HomeState>(
-                        builder: (context, state) {
-                          if (state is HomeIsLoading) {
-                            return const Center(
-                                child: CircularProgressIndicator(
-                              color: Colors.blue,
-                            ));
-                          } else if (state is HomeIsSuccess) {
-                            return ListView.builder(
-                              itemCount: 1,
-                              shrinkWrap: true,
-                              padding: EdgeInsets.zero,
-                              clipBehavior: Clip.none,
-                              itemBuilder: (context, index) {
-                                var item = state.data.riwayat[index];
-                                return Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFFAFDFF),
-                                    borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(
-                                        color: Colors.black, width: 0.1),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        // ignore: prefer_const_literals_to_create_immutables
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: BlocBuilder<HomeCubit, HomeState>(
+                          builder: (context, state) {
+                            if (state is HomeIsLoading) {
+                              return const Center(
+                                  child: CircularProgressIndicator(
+                                color: Colors.blue,
+                              ));
+                            } else if (state is HomeIsSuccess) {
+                              if (state.data.riwayat.isNotEmpty) {
+                                return ListView.builder(
+                                  itemCount: 1,
+                                  shrinkWrap: true,
+                                  padding: EdgeInsets.zero,
+                                  clipBehavior: Clip.none,
+                                  itemBuilder: (context, index) {
+                                    var item = state.data.riwayat[index];
+                                    return Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 80,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFFAFDFF),
+                                        borderRadius: BorderRadius.circular(16),
+                                        border: Border.all(
+                                            color: Colors.black, width: 0.1),
+                                      ),
+                                      child: Column(
                                         children: [
-                                          // ignore: prefer_const_constructors
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 16, left: 16),
-                                            // ignore: prefer_const_constructors
-                                            child: Text(
-                                              "${item.date}",
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            // ignore: prefer_const_literals_to_create_immutables
+                                            children: [
                                               // ignore: prefer_const_constructors
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  color:
-                                                      const Color(0xFFA7ABB3),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 16, left: 16),
+                                                // ignore: prefer_const_constructors
+                                                child: Text(
+                                                  "${item.date}",
+                                                  // ignore: prefer_const_constructors
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      color: const Color(
+                                                          0xFFA7ABB3),
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 16, right: 16),
+                                                child: Text(
+                                                  '${item.point}pt',
+                                                  style: const TextStyle(
+                                                      fontSize: 12,
+                                                      color: Color(0xFFA7ABB3),
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 16, right: 16),
-                                            child: Text(
-                                              '${item.point}pt',
-                                              style: const TextStyle(
-                                                  fontSize: 12,
-                                                  color: Color(0xFFA7ABB3),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: 4, left: 16),
+                                                child: Text(
+                                                  'Berat Sampah :',
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Color(0xFF001F29),
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 4, left: 5),
+                                                child: Text(
+                                                  '${item.weight}Kg',
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      color: Color(0xFF001F29),
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                  top: 4,
+                                                  right: 16,
+                                                ),
+                                                child: Text(
+                                                  'Rp${item.revenue}',
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      color: Color(0xFF019BF1),
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                              ),
+                                            ],
                                           ),
+                                          // Padding(
+                                          //   padding: const EdgeInsets.only(
+                                          //       top: 10, right: 16, left: 16),
+                                          //   child: SizedBox(
+                                          //     width: MediaQuery.of(context)
+                                          //             .size
+                                          //             .width *
+                                          //         1,
+                                          //     height: 40,
+                                          //     child: OutlinedButton(
+                                          //       style: OutlinedButton.styleFrom(
+                                          //         side: const BorderSide(
+                                          //             color: Color(0xFFFF7F33)),
+                                          //         foregroundColor:
+                                          //             const Color(0xFFFF7F33),
+                                          //         shape: RoundedRectangleBorder(
+                                          //           borderRadius:
+                                          //               BorderRadius.circular(
+                                          //                   12), // <-- Radius
+                                          //         ),
+                                          //       ),
+                                          //       onPressed: () {
+                                          //         context.go('/DetailRiwayat');
+                                          //       },
+                                          //       child: const Text("Lihat Detail",
+                                          //           style: TextStyle(
+                                          //               fontSize: 12,
+                                          //               fontWeight:
+                                          //                   FontWeight.w400)),
+                                          //     ),
+                                          //   ),
+                                          // ),
                                         ],
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          const Padding(
-                                            padding: EdgeInsets.only(
-                                                top: 4, left: 16),
-                                            child: Text(
-                                              'Berat Sampah :',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Color(0xFF001F29),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 4, left: 5),
-                                            child: Text(
-                                              '${item.weight}Kg',
-                                              style: const TextStyle(
-                                                  fontSize: 16,
-                                                  color: Color(0xFF001F29),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              top: 4,
-                                              right: 16,
-                                            ),
-                                            child: Text(
-                                              'Rp${item.revenue}',
-                                              style: const TextStyle(
-                                                  fontSize: 16,
-                                                  color: Color(0xFF019BF1),
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      // Padding(
-                                      //   padding: const EdgeInsets.only(
-                                      //       top: 10, right: 16, left: 16),
-                                      //   child: SizedBox(
-                                      //     width: MediaQuery.of(context)
-                                      //             .size
-                                      //             .width *
-                                      //         1,
-                                      //     height: 40,
-                                      //     child: OutlinedButton(
-                                      //       style: OutlinedButton.styleFrom(
-                                      //         side: const BorderSide(
-                                      //             color: Color(0xFFFF7F33)),
-                                      //         foregroundColor:
-                                      //             const Color(0xFFFF7F33),
-                                      //         shape: RoundedRectangleBorder(
-                                      //           borderRadius:
-                                      //               BorderRadius.circular(
-                                      //                   12), // <-- Radius
-                                      //         ),
-                                      //       ),
-                                      //       onPressed: () {
-                                      //         context.go('/DetailRiwayat');
-                                      //       },
-                                      //       child: const Text("Lihat Detail",
-                                      //           style: TextStyle(
-                                      //               fontSize: 12,
-                                      //               fontWeight:
-                                      //                   FontWeight.w400)),
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                    ],
+                                    );
+                                  },
+                                );
+                              } else {
+                                // Tampilkan pesan ketika daftar riwayat kosong
+                                return const Center(
+                                  child: Text(
+                                    'Belum ada riwayat antar jemput\nYuk mulai bereskan sampah mu',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
                                 );
-                              },
-                            );
-                          }
-                          return const Center(
-                            child: Text(
-                              'Belum ada riwayat anatar jemput\nYuk mulai bereskan sampah mu',
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          );
-                        },
+                              }
+                            }
+                            return Container();
+                          },
+                        ),
                       ),
                     ),
                     Row(

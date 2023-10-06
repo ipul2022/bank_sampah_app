@@ -187,7 +187,7 @@ class _BankSampahScreenState extends State<BankSampahScreen> {
                               ),
                             ),
                             onPressed: () {
-                              context.go('/TukarPoint1');
+                              // context.go('/TukarPoint1');
                             },
                             child: const Text(
                               "Tukar Point",

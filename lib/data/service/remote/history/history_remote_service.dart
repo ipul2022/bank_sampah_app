@@ -8,11 +8,15 @@ class HistoryRemoteService {
   Client client = Client();
 
   Future<Response> fecthHistory(AuthenticationHeaderRequest header) async {
-    final url = Uri.https(
-        BaseConfig.BASE_DOMAIN, BaseConfig.BASE_PATH + BaseConfig.HISTORY);
-    print(url);
-    return client.get(
-      url,
-    );
+    final url = Uri.http(
+        BaseConfig.BASE_DOMAIN, BaseConfig.BASE_PATH + BaseConfig.fetchHistory);
+    print("URL : ${url.toString()}");
+    var token = header.accesToken;
+    print("ini token history riwayat : $token");
+    return client.get(url, headers: {
+      'Authorization': 'Bearer $token',
+      'Cookie': 'token=$token',
+      'Content-Type': 'application/json',
+    });
   }
 }

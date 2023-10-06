@@ -1,39 +1,47 @@
 import 'dart:convert';
 
 import 'package:loginandsignup/data/base/result_entity.dart';
+import 'package:loginandsignup/data/model/Riwayat/riwayat_response.dart';
 import 'package:loginandsignup/data/model/base_response/base_remote_response.dart';
-import 'package:loginandsignup/data/model/history/history_collection.dart';
 import 'package:loginandsignup/data/service/remote/history/history_remote_service.dart';
 import 'package:loginandsignup/domain/base/authentication_header_request.dart';
+import 'package:loginandsignup/domain/model/data/home/riwayat_data.dart';
 import 'package:loginandsignup/domain/repository/history/history_repository.dart';
 
 class HistoryRepositoryImpl implements HistoryRepository {
   final historyService = HistoryRemoteService();
+
   @override
-  Future<ResultEntity<List>> fecthHistory(
+  Future<ResultEntity<List<RiwayatData>>> fecthHistory(
       AuthenticationHeaderRequest header) async {
-    
     try {
       final response = await historyService.fecthHistory(header);
+      print("STATUS CODE HISTORY : ${response.statusCode}");
+      print("DATA HISTORY : ${response.body}");
       if (response.statusCode == 200 || response.statusCode == 201) {
-        BaseRemoteResponse<HistoryCollectionResponse> baseResponseObject =
-            BaseRemoteResponse<HistoryCollectionResponse>.fromJson(
+        BaseRemoteResponse<List<RiwayatCollectionResponse>> baseResponseArray =
+            BaseRemoteResponse<List<RiwayatCollectionResponse>>.fromJson(
                 jsonDecode(response.body),
-                (json) => HistoryCollectionResponse.fromJson(
-                    json as Map<String, dynamic>));
-        HistoryCollectionResponse.fromJson(jsonDecode(response.body));
-        if (baseResponseObject.status == null) {
+                (json) => (json as List)
+                    .map(
+                      (e) => RiwayatCollectionResponse.fromJson(
+                          e as Map<String, dynamic>),
+                    )
+                    .toList());
+        if (baseResponseArray.status == null) {
           // ignore: avoid_print
-          print(baseResponseObject.status);
-          return ResultError(message: baseResponseObject.status!.message);
-        } else if (baseResponseObject.status?.code != 0) {
+          print(baseResponseArray.status);
+          return ResultError(message: baseResponseArray.status!.message);
+        } else if (baseResponseArray.status?.code != 1) {
           // ignore: avoid_print
-          print(baseResponseObject.status!.code);
-          return ResultError(message: "");
+          print(baseResponseArray.status!.code);
+          return ResultError(message: baseResponseArray.status!.message);
         } else {
           // ignore: avoid_print
-          print(baseResponseObject.data);
-          return ResultSuccess(baseResponseObject.data!.toHomeRiwayatData());
+          print(baseResponseArray.data);
+          return ResultSuccess<List<RiwayatData>>(
+              baseResponseArray.data?.map((e) => e.toRiwayatData()).toList() ??
+                  List.empty());
         }
       } else {
         // ignore: avoid_print

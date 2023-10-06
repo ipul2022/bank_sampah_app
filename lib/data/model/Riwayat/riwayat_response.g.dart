@@ -9,10 +9,10 @@ part of 'riwayat_response.dart';
 RiwayatCollectionResponse _$RiwayatCollectionResponseFromJson(
         Map<String, dynamic> json) =>
     RiwayatCollectionResponse(
-      json['date'] as String?,
-      json['weight'] as int?,
-      json['revenue'] as int?,
-      json['point'] as int?,
+      date: json['date'] as String?,
+      weight: json['weight'] as int?,
+      revenue: json['revenue'] as int?,
+      point: json['point'] as int?,
     );
 
 Map<String, dynamic> _$RiwayatCollectionResponseToJson(

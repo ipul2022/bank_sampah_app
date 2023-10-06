@@ -353,137 +353,155 @@ class _ProfileState extends State<Profile> {
                             // ),
                           ],
                         ),
+                        const SizedBox(
+                          height: 12,
+                        ),
                         Padding(
                           padding:
                               const EdgeInsets.only(left: 0, right: 0, top: 0),
-                          child: ListView.builder(
-                              itemCount: 1,
-                              shrinkWrap: true,
-                              padding: EdgeInsets.zero,
-                              clipBehavior: Clip.none,
-                              itemBuilder: (context, index) {
-                                var item = state.data.riwayat[index];
-                                return Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFFAFDFF),
-                                    borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(
-                                        color: Colors.black, width: 0.1),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        // ignore: prefer_const_literals_to_create_immutables
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 16, left: 16),
-                                            child: Text(
-                                              '${item.date}',
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  color:
-                                                      const Color(0xFFA7ABB3),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 16, right: 16),
-                                            child: Text(
-                                              '${item.point}pt',
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  color: Color(0xFFA7ABB3),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ),
-                                        ],
+                          child: state.data.riwayat.isNotEmpty
+                              ? ListView.builder(
+                                  itemCount: 1,
+                                  shrinkWrap: true,
+                                  padding: EdgeInsets.zero,
+                                  clipBehavior: Clip.none,
+                                  itemBuilder: (context, index) {
+                                    var item = state.data.riwayat[index];
+                                    return Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 80,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFFAFDFF),
+                                        borderRadius: BorderRadius.circular(16),
+                                        border: Border.all(
+                                            color: Colors.black, width: 0.1),
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                      child: Column(
                                         children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: 4, left: 16),
-                                            child: Text(
-                                              'Berat Sampah :',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Color(0xFF001F29),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 4, left: 5),
-                                              child: Text(
-                                                '${item.weight}Kg',
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Color(0xFF001F29),
-                                                    fontWeight:
-                                                        FontWeight.w400),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            // ignore: prefer_const_literals_to_create_immutables
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 16, left: 16),
+                                                child: Text(
+                                                  '${item.date}',
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      color: const Color(
+                                                          0xFFA7ABB3),
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
                                               ),
-                                            ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 16, right: 16),
+                                                child: Text(
+                                                  '${item.point}pt',
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      color: Color(0xFFA7ABB3),
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              top: 4,
-                                              right: 16,
-                                            ),
-                                            child: Text(
-                                              'Rp ${item.revenue}',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Color(0xFF019BF1),
-                                                  fontWeight: FontWeight.w500),
-                                            ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: 4, left: 16),
+                                                child: Text(
+                                                  'Berat Sampah :',
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Color(0xFF001F29),
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 4, left: 5),
+                                                  child: Text(
+                                                    '${item.weight}Kg',
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        color:
+                                                            Color(0xFF001F29),
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 4,
+                                                  right: 16,
+                                                ),
+                                                child: Text(
+                                                  'Rp ${item.revenue}',
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Color(0xFF019BF1),
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                              ),
+                                            ],
                                           ),
+                                          // Padding(
+                                          //   padding: const EdgeInsets.only(
+                                          //       top: 10, right: 16, left: 16),
+                                          //   child: SizedBox(
+                                          //     width: MediaQuery.of(context)
+                                          //             .size
+                                          //             .width *
+                                          //         1,
+                                          //     height: 40,
+                                          //     child: OutlinedButton(
+                                          //       style: OutlinedButton.styleFrom(
+                                          //         side: BorderSide(
+                                          //             color: Color(0xFFFF7F33)),
+                                          //         foregroundColor:
+                                          //             Color(0xFFFF7F33),
+                                          //         shape: RoundedRectangleBorder(
+                                          //           borderRadius:
+                                          //               BorderRadius.circular(
+                                          //                   12), // <-- Radius
+                                          //         ),
+                                          //       ),
+                                          //       onPressed: () {
+                                          //         context.go('/DetailRiwayat');
+                                          //       },
+                                          //       child: const Text("Lihat Detail",
+                                          //           style: TextStyle(
+                                          //               fontSize: 12,
+                                          //               fontWeight:
+                                          //                   FontWeight.w400)),
+                                          //     ),
+                                          //   ),
+                                          // ),
                                         ],
                                       ),
-                                      // Padding(
-                                      //   padding: const EdgeInsets.only(
-                                      //       top: 10, right: 16, left: 16),
-                                      //   child: SizedBox(
-                                      //     width: MediaQuery.of(context)
-                                      //             .size
-                                      //             .width *
-                                      //         1,
-                                      //     height: 40,
-                                      //     child: OutlinedButton(
-                                      //       style: OutlinedButton.styleFrom(
-                                      //         side: BorderSide(
-                                      //             color: Color(0xFFFF7F33)),
-                                      //         foregroundColor:
-                                      //             Color(0xFFFF7F33),
-                                      //         shape: RoundedRectangleBorder(
-                                      //           borderRadius:
-                                      //               BorderRadius.circular(
-                                      //                   12), // <-- Radius
-                                      //         ),
-                                      //       ),
-                                      //       onPressed: () {
-                                      //         context.go('/DetailRiwayat');
-                                      //       },
-                                      //       child: const Text("Lihat Detail",
-                                      //           style: TextStyle(
-                                      //               fontSize: 12,
-                                      //               fontWeight:
-                                      //                   FontWeight.w400)),
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                    ],
+                                    );
+                                  })
+                              : const Center(
+                                  child: Text(
+                                    'Belum ada riwayat antar jemput\nYuk mulai bereskan sampah mu',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
-                                );
-                              }),
+                                ),
                         ),
                       ],
                     ),

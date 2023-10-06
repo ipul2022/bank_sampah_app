@@ -26,6 +26,7 @@ import 'package:loginandsignup/presention/pages/login/cubit/login_cubit.dart';
 import 'package:loginandsignup/presention/pages/lupa_password/cubit/forgot_pass_cubit.dart';
 import 'package:loginandsignup/presention/pages/profile/userModel.dart';
 import 'package:loginandsignup/presention/pages/registrasi/cubit/registrasi_cubit.dart';
+import 'package:loginandsignup/presention/pages/riwayat/cubit/history_cubit.dart';
 import 'package:loginandsignup/presention/pages/tukar_poin/cubit/tukarpoint_cubit.dart';
 import 'package:rounded_expansion_tile/rounded_expansion_tile.dart';
 import 'package:loginandsignup/data/utilities/commons.dart';

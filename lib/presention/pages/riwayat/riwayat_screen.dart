@@ -2,14 +2,9 @@
 
 part of '../pages.dart';
 
-class RiwayatScreen extends StatefulWidget {
+class RiwayatScreen extends StatelessWidget {
   const RiwayatScreen({super.key});
 
-  @override
-  State<RiwayatScreen> createState() => _RiwayatScreenState();
-}
-
-class _RiwayatScreenState extends State<RiwayatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,17 +27,18 @@ class _RiwayatScreenState extends State<RiwayatScreen> {
           ),
         ),
       ),
-      body: BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
-        if (state is HomeIsLoading) {
+      body: BlocBuilder<HistoryCubit, HistoryState>(builder: (context, state) {
+        if (state is HistoryInLoading) {
           return const Center(
               child: CircularProgressIndicator(
             color: Colors.blue,
           ));
-        } else if (state is HomeIsSuccess) {
+        } else if (state is HistoryInSucces) {
           return ListView.builder(
-              itemCount: state.data.riwayat.length,
+              itemCount: state.data.length,
+              shrinkWrap: true,
               itemBuilder: (context, index) {
-                var data = state.data.riwayat[index];
+                var data = state.data[index];
                 return Center(
                   child: Column(
                     children: [

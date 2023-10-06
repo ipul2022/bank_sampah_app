@@ -13,6 +13,7 @@ import 'package:loginandsignup/presention/pages/navigasibar.dart';
 // import 'package:loginandsignup/pages/pages.dart';
 import 'package:loginandsignup/presention/pages/pages.dart';
 import 'package:loginandsignup/presention/pages/penjemputan/new_inquiry_model.dart';
+import 'package:loginandsignup/presention/pages/riwayat/cubit/history_cubit.dart';
 import '../pages/autentikasi/autentikasi.dart';
 import '../pages/profile/userModel.dart';
 import 'route.dart';
@@ -175,9 +176,12 @@ GoRouter appRouter(String path) {
       },
     ),
     GoRoute(
-        path: "/RiwayatScreen",
-        name: "riwayat",
-        builder: (context, state) => const RiwayatScreen()),
+        path: "/riwayatScreen",
+        name: Routes.RiwayatScreen,
+        builder: (context, state) {
+          BlocProvider.of<HistoryCubit>(context).fecthHistory();
+          return const RiwayatScreen();
+        }),
     GoRoute(
       path: "/ArticleScreen",
       name: "article",

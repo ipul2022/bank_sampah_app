@@ -5,6 +5,7 @@ import 'package:loginandsignup/data/repository/change_profile/change_profile_rep
 import 'package:loginandsignup/data/repository/config-code/config_code_repository_impl.dart';
 import 'package:loginandsignup/data/repository/detail_riwayat/detail_history_repository_impl.dart';
 import 'package:loginandsignup/data/repository/forgot-password/forgot_password_repository.impl.dart';
+import 'package:loginandsignup/data/repository/history/history_repository_impl.dart';
 import 'package:loginandsignup/data/repository/home/home_repository_impl.dart';
 import 'package:loginandsignup/data/repository/layanan/layanan_repository_impl.dart';
 import 'package:loginandsignup/data/repository/login/login_repository_impl.dart';
@@ -19,6 +20,7 @@ import 'package:loginandsignup/presention/pages/layanan/cubit/layanan_cubit.dart
 import 'package:loginandsignup/presention/pages/login/cubit/login_cubit.dart';
 import 'package:loginandsignup/presention/pages/lupa_password/cubit/forgot_pass_cubit.dart';
 import 'package:loginandsignup/presention/pages/registrasi/cubit/registrasi_cubit.dart';
+import 'package:loginandsignup/presention/pages/riwayat/cubit/history_cubit.dart';
 
 import 'data/repository/new-inquiry/new_inquiry_impl.dart';
 import 'data/repository/token/token_repository_impl.dart';
@@ -88,6 +90,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => PointCubit(PointRespositoryImpl()),
+        ),
+        BlocProvider(
+          create: (context) => HistoryCubit(HistoryRepositoryImpl()),
         ),
       ],
       child: BlocBuilder<AuthCubit, AuthState>(

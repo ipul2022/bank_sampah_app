@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:loginandsignup/domain/model/data/home/riwayat_data.dart';
 
 part 'riwayat_response.g.dart';
@@ -14,12 +15,12 @@ class RiwayatCollectionResponse implements RiwayatCollectionResponseMapper {
   int? weight;
   int? revenue;
   int? point;
-  RiwayatCollectionResponse(
-    this.date,
-    this.weight,
-    this.revenue,
-    this.point,
-  );
+  RiwayatCollectionResponse({
+    required this.date,
+    required this.weight,
+    required this.revenue,
+    required this.point,
+  });
 
   factory RiwayatCollectionResponse.fromJson(Map<String, dynamic> json) =>
       _$RiwayatCollectionResponseFromJson(json);
