@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_brace_in_string_interps, await_only_futures, avoid_print
+// ignore_for_file: unnecessary_brace_in_string_interps, await_only_futures, avoid_print, unnecessary_string_interpolations
 
 import 'dart:convert';
 

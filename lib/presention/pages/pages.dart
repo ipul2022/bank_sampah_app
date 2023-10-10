@@ -10,8 +10,10 @@ import 'package:loginandsignup/data/repository/forgot-password/forgot_password_r
 
 import 'package:loginandsignup/data/repository/registrasi/registrasi_repository_impl.dart';
 import 'package:loginandsignup/data/repository/tukar_point/tukar_point_repository_impl.dart';
+import 'package:loginandsignup/domain/model/data/new_inquiry/new_inquiry_data.dart';
 import 'package:loginandsignup/domain/model/request/Register/register_request.dart';
 import 'package:loginandsignup/domain/model/request/confirm_code_request/confirm_code.dart';
+import 'package:loginandsignup/domain/model/request/detail_history/detail_history_requets.dart';
 import 'package:loginandsignup/domain/model/request/forgot_request/forgot_password.dart';
 import 'package:loginandsignup/presention/pages/bank_sampah/add_item_model.dart';
 
@@ -20,6 +22,7 @@ import 'package:loginandsignup/presention/pages/bank_sampah/cubit/point_cubit.da
 import 'package:loginandsignup/presention/pages/bank_sampah/radiotile.dart';
 import 'package:loginandsignup/presention/pages/config_pass/cubit/config_pass_cubit.dart';
 import 'package:loginandsignup/presention/pages/detail_riwayat/cubit/detal_history_cubit.dart';
+import 'package:loginandsignup/presention/pages/detail_riwayat/detailModel.dart';
 import 'package:loginandsignup/presention/pages/home/cubit/home_cubit.dart';
 import 'package:loginandsignup/presention/pages/layanan/cubit/layanan_cubit.dart';
 import 'package:loginandsignup/presention/pages/login/cubit/login_cubit.dart';

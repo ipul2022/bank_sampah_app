@@ -94,6 +94,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => HistoryCubit(HistoryRepositoryImpl()),
         ),
+        BlocProvider(
+          create: (context) => DetalHistoryCubit(DetailHistoryRepositoryImpl()),
+        ),
       ],
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, authStatus) {

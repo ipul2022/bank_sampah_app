@@ -156,7 +156,7 @@ class _BankSampahScreenState extends State<BankSampahScreen> {
                               ));
                             } else if (state is PointIsSuccess) {
                               return Text(
-                                "${state.data.point}",
+                                "${state.data.point} Point",
                                 style: TextStyle(
                                     fontSize: 16.0,
                                     color: Color(0xFF019BF1),

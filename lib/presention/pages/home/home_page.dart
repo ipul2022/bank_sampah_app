@@ -193,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                       child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          '${state.data.profile.balance}',
+                                          'Rp.${state.data.profile.balance}',
                                           // ignore: prefer_const_constructors
                                           style: TextStyle(
                                               color: Colors.blue,

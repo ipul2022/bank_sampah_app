@@ -24,7 +24,9 @@ class _NavigasiBarState extends State<NavigasiBar> {
   int navigasiBar = 0;
   final screen = [
     const HomeScreen(),
-    Profile(),
+    const Profile(
+      
+    ),
   ];
   @override
   void initState() {
@@ -50,7 +52,9 @@ class _NavigasiBarState extends State<NavigasiBar> {
             currentIndex: navigasiBar,
             onTap: (index) {
               context.read<AuthCubit>().checkToken();
+
               BlocProvider.of<AuthCubit>(context).checkToken();
+
               setState(() {
                 navigasiBar = index;
               });

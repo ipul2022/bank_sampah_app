@@ -2,9 +2,15 @@
 
 part of '../pages.dart';
 
-class RiwayatScreen extends StatelessWidget {
+class RiwayatScreen extends StatefulWidget {
   const RiwayatScreen({super.key});
 
+  @override
+  State<RiwayatScreen> createState() => _RiwayatScreenState();
+}
+
+class _RiwayatScreenState extends State<RiwayatScreen> {
+  NewInquiryData? date;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +40,7 @@ class RiwayatScreen extends StatelessWidget {
             color: Colors.blue,
           ));
         } else if (state is HistoryInSucces) {
+          
           return ListView.builder(
               itemCount: state.data.length,
               shrinkWrap: true,
@@ -47,7 +54,7 @@ class RiwayatScreen extends StatelessWidget {
                             const EdgeInsets.only(left: 20, right: 20, top: 10),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          height: 120,
+                          height: 80,
                           decoration: BoxDecoration(
                             color: const Color(0xFFFAFDFF),
                             borderRadius: BorderRadius.circular(16),
@@ -129,32 +136,36 @@ class RiwayatScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 10, right: 16, left: 16),
-                                child: SizedBox(
-                                  width: MediaQuery.of(context).size.width * 1,
-                                  height: 40,
-                                  child: OutlinedButton(
-                                    style: OutlinedButton.styleFrom(
-                                      side: const BorderSide(
-                                          color: Color(0xFFFF7F33)),
-                                      foregroundColor: const Color(0xFFFF7F33),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                            12), // <-- Radius
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      context.go('/DetailRiwayat');
-                                    },
-                                    child: const Text("Lihat Detail",
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400)),
-                                  ),
-                                ),
-                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(
+                              //       top: 10, right: 16, left: 16),
+                              //   child: SizedBox(
+                              //     width: MediaQuery.of(context).size.width * 1,
+                              //     height: 40,
+                              //     child: OutlinedButton(
+                              //       style: OutlinedButton.styleFrom(
+                              //         side: const BorderSide(
+                              //             color: Color(0xFFFF7F33)),
+                              //         foregroundColor: const Color(0xFFFF7F33),
+                              //         shape: RoundedRectangleBorder(
+                              //           borderRadius: BorderRadius.circular(
+                              //               12), // <-- Radius
+                              //         ),
+                              //       ),
+                              //       onPressed: () {
+                              //         context.goNamed(Routes.DetailRiwayat,
+                              //             extra: date);
+                              //         // context
+                              //         //     .read<DetalHistoryCubit>()
+                              //         //     .btn(data.date);
+                              //       },
+                              //       child: const Text("Lihat Detail",
+                              //           style: TextStyle(
+                              //               fontSize: 12,
+                              //               fontWeight: FontWeight.w400)),
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),
@@ -162,7 +173,8 @@ class RiwayatScreen extends StatelessWidget {
                     ],
                   ),
                 );
-              });
+              }
+              );
         }
         return const Center(
           child: Text(

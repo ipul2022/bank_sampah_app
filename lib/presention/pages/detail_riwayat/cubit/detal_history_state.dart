@@ -13,10 +13,10 @@ class DetalHistoryInitial extends DetalHistoryState {}
 class DetalHistoryIsLoading extends DetalHistoryState {}
 
 class DetalHistoryIsSuccess extends DetalHistoryState {
-  final DetailHistoryData data;
-  const DetalHistoryIsSuccess(
+  NewInquiryData data;
+  DetalHistoryIsSuccess(
     this.data,
-  );
+);
 }
 
 class DetalHistoryIsError extends DetalHistoryState {

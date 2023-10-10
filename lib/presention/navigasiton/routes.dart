@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:loginandsignup/presention/pages/bank_sampah/add_item_model.dart';
 import 'package:loginandsignup/presention/pages/bank_sampah/cubit/bank_sampah_cubit.dart';
 import 'package:loginandsignup/presention/pages/detail_riwayat/cubit/detal_history_cubit.dart';
+
 import 'package:loginandsignup/presention/pages/home/cubit/home_cubit.dart';
 import 'package:loginandsignup/presention/pages/layanan/cubit/layanan_cubit.dart';
 
@@ -85,7 +86,6 @@ GoRouter appRouter(String path) {
                     name: Routes.LayananScreen,
                     builder: (context, state) {
                       BlocProvider.of<LayananCubit>(context).fecthLayanan();
-
                       return const LayananScreen();
                     }),
                 GoRoute(
@@ -93,16 +93,19 @@ GoRouter appRouter(String path) {
                   name: Routes.BankSampahScreen,
                   builder: (context, state) {
                     BlocProvider.of<BankSampahCubit>(context).fecthBankSampah();
-                    return BankSampahScreen();
+                    return const BankSampahScreen();
                   },
                 ),
               ]),
           GoRoute(
               path: "Profile",
               name: Routes.Profile,
-              builder: (context, state) => const NavigasiBar(
-                    indexScreen: 1,
-                  ),
+              builder: (context, state) {
+                BlocProvider.of<HistoryCubit>(context).fecthHistory();
+                return const NavigasiBar(
+                  indexScreen: 1,
+                );
+              },
               routes: [
                 GoRoute(
                   path: "ChangeProfile",
@@ -168,11 +171,12 @@ GoRouter appRouter(String path) {
     ),
     GoRoute(
       path: "/DetailRiwayat",
-      name: "detailriwayat",
+      name: Routes.DetailRiwayat,
       builder: (context, state) {
-        BlocProvider.of<DetalHistoryCubit>(context)
-            .fecthDetailHistory("Detail History");
-        return const DetailRiwayat();
+        context.read<DetalHistoryCubit>().btn("");
+        return const DetailRiwayat(
+          date: Routes.DetailRiwayat,
+        );
       },
     ),
     GoRoute(

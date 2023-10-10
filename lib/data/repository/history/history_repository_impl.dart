@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:loginandsignup/data/base/result_entity.dart';
@@ -29,27 +31,22 @@ class HistoryRepositoryImpl implements HistoryRepository {
                     )
                     .toList());
         if (baseResponseArray.status == null) {
-          // ignore: avoid_print
           print(baseResponseArray.status);
           return ResultError(message: baseResponseArray.status!.message);
         } else if (baseResponseArray.status?.code != 1) {
-          // ignore: avoid_print
           print(baseResponseArray.status!.code);
           return ResultError(message: baseResponseArray.status!.message);
         } else {
-          // ignore: avoid_print
           print(baseResponseArray.data);
           return ResultSuccess<List<RiwayatData>>(
               baseResponseArray.data?.map((e) => e.toRiwayatData()).toList() ??
                   List.empty());
         }
       } else {
-        // ignore: avoid_print
         print(response.statusCode);
         return ResultError(message: "");
       }
     } catch (e) {
-      // ignore: avoid_print
       print(e.toString());
       return ResultError(message: e.toString());
     }

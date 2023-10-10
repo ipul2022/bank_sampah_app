@@ -3,7 +3,11 @@
 part of '../pages.dart';
 
 class DetailRiwayat extends StatefulWidget {
-  const DetailRiwayat({super.key});
+  final String date;
+  const DetailRiwayat({
+    Key? key,
+    required this.date,
+  }) : super(key: key);
 
   @override
   State<DetailRiwayat> createState() => _DetailRiwayatState();
@@ -11,6 +15,7 @@ class DetailRiwayat extends StatefulWidget {
 
 class _DetailRiwayatState extends State<DetailRiwayat> {
   String? groupValue;
+  String urlImage = "";
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +38,10 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
         ),
       ),
       body: BlocBuilder<DetalHistoryCubit, DetalHistoryState>(
-        builder: (context, detalHistoryState) {
-          if (detalHistoryState is DetalHistoryIsSuccess) {
+        builder: (context, state) {
+          if (state is DetalHistoryIsSuccess) {
+            urlImage = state.data.image;
+            final data = state.data;
             return Center(
               child: Padding(
                 padding: const EdgeInsets.only(left: 20),
@@ -57,7 +64,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                             color: Color(0xFFA7ABB3),
                           ),
                           Text(
-                            detalHistoryState.data.pickup_address,
+                            "${data.pickup_address}",
                             style: const TextStyle(
                               fontSize: 14.0,
                               fontWeight: FontWeight.w400,
@@ -80,9 +87,10 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                       padding: const EdgeInsets.only(left: 11, top: 10),
                       child: Row(
                         children: [
-                          const Icon(Icons.date_range, color: Color(0xFFA7ABB3)),
+                          const Icon(Icons.date_range,
+                              color: Color(0xFFA7ABB3)),
                           Text(
-                            detalHistoryState.data.date,
+                            "${data.date}",
                             style: const TextStyle(
                               fontSize: 14.0,
                               fontWeight: FontWeight.w400,
@@ -103,7 +111,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                         ),
                         const SizedBox(width: 5),
                         Text(
-                          "${detalHistoryState.data.weight}",
+                          "${data.weight}",
                           style: const TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.w400,
@@ -119,127 +127,13 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      "Waktu",
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: SizedBox(
-                            width: 40,
-                            height: 40,
-                            child: TextFormField(
-                              style: const TextStyle(
-                                  fontSize: 14, color: Colors.black),
-                              textAlign: TextAlign.center,
-                              onChanged: (value) {
-                                if (value.length == 2) {
-                                  FocusScope.of(context).nextFocus();
-                                }
-                              },
-                              decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                filled: true,
-                                fillColor: Colors.white,
-                                hintText: '00',
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                    width: 0.5,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                    width: 0.5,
-                                  ),
-                                ),
-                              ),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [
-                                LengthLimitingTextInputFormatter(2),
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                            ),
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 8, left: 6),
-                          child: Text(
-                            ":",
-                            style: TextStyle(
-                              fontSize: 14.0,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8, left: 6),
-                          child: SizedBox(
-                            width: 40,
-                            height: 40,
-                            child: TextFormField(
-                              style: const TextStyle(
-                                  fontSize: 14, color: Colors.black),
-                              textAlign: TextAlign.center,
-                              onChanged: (value) {
-                                if (value.length == 2) {
-                                  FocusScope.of(context).nextFocus();
-                                }
-                              },
-                              decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                filled: true,
-                                fillColor: Colors.white,
-                                hintText: '00',
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                    width: 0.5,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                    width: 0.5,
-                                  ),
-                                ),
-                              ),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [
-                                LengthLimitingTextInputFormatter(2),
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: RadioListTile(
-                            value: "AM",
-                            groupValue: groupValue,
-                            title: const Text("AM"),
-                            controlAffinity: ListTileControlAffinity.platform,
-                            onChanged: (value) {
-                              setState(() {
-                                groupValue = value;
-                              });
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8, right: 20),
                       child: Container(
                         height: 125.0,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: NetworkImage(
-                                  detalHistoryState.data.image),
+                              image: NetworkImage("${data.image}"),
                               fit: BoxFit.fill),
                           color: Colors.blueAccent,
                           borderRadius: const BorderRadius.all(
@@ -269,7 +163,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                             child: Align(
                               alignment: Alignment.centerRight,
                               child: Text(
-                                "Rp. ${detalHistoryState.data.price}",
+                                "Rp. ${data.price}",
                                 style: const TextStyle(
                                     fontSize: 22.0, color: Color(0xFF019BF1)),
                               ),
@@ -282,17 +176,19 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                 ),
               ),
             );
-          } else if (detalHistoryState is DetalHistoryIsLoading) {
+          } else if (state is DetalHistoryIsLoading) {
             return Container(
               alignment: Alignment.center,
               child: const CircularProgressIndicator(),
             );
           }
           return Container(
-            child: const Text(
-              "Kosong",
-              style: TextStyle(
-                fontSize: 10.0,
+            child: const Center(
+              child: Text(
+                "Kosong",
+                style: TextStyle(
+                  fontSize: 10.0,
+                ),
               ),
             ),
           );

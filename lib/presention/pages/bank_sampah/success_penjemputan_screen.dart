@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, avoid_print
+
 part of '../pages.dart';
 
 class SuccessPenjemputan extends StatefulWidget {
