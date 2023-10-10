@@ -16,13 +16,17 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _historyCubit = HistoryCubit(HistoryRepositoryImpl());
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _historyCubit.close();
     super.dispose();
   }
+
+  late HistoryCubit _historyCubit;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -39,32 +43,6 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
       // app suspended
     }
   }
-  // WebViewController? _controller;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _controller = WebViewController()
-  //     ..setJavaScriptMode(JavaScriptMode.unrestricted)
-  //     ..setBackgroundColor(const Color(0x00000000))
-  //     ..setNavigationDelegate(
-  //       NavigationDelegate(
-  //         onProgress: (int progress) {
-  //           // Update loading bar.
-  //         },
-  //         onPageStarted: (String url) {},
-  //         onPageFinished: (String url) {},
-  //         onWebResourceError: (WebResourceError error) {},
-  //         onNavigationRequest: (NavigationRequest request) {
-  //           if (request.url.startsWith('https://www.youtube.com/')) {
-  //             return NavigationDecision.prevent;
-  //           }
-  //           return NavigationDecision.navigate;
-  //         },
-  //       ),
-  //     )
-  //     ..loadRequest(Uri.parse('https://phlox.rohisyam.online/'));
-  // }
-
   _launchWhatsApp() async {
     // Ganti nomor telepon berikut dengan nomor WhatsApp yang ingin Anda hubungi.
     String phoneNumber = '6285162612828';
@@ -79,9 +57,12 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
       print('Tidak dapat membuka WhatsApp.');
     }
   }
+  
 
   @override
   Widget build(BuildContext context) {
+    
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
@@ -336,24 +317,24 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
                           const SizedBox(
                             height: 12,
                           ),
-                          BlocBuilder<HomeCubit, HomeState>(
+                          BlocBuilder<HistoryCubit, HistoryState>(
                             builder: (context, state) {
-                              if (state is HomeIsLoading) {
+                              if (state is HistoryInLoading) {
                                 return const Center(
                                     child: CircularProgressIndicator(
                                   color: Colors.blue,
                                 ));
-                              } else if (state is HomeIsSuccess) {
-                                return state.data.riwayat.isNotEmpty
+                              } else if (state is HistoryInSucces) {
+                                return state.data.isNotEmpty
                                     ? ListView.builder(
-                                        itemCount: state.data.riwayat.length,
+                                        itemCount: state.data.length,
                                         shrinkWrap: true,
                                         padding: EdgeInsets.zero,
                                         clipBehavior: Clip.none,
                                         physics:
                                             const NeverScrollableScrollPhysics(),
                                         itemBuilder: (context, index) {
-                                          var item = state.data.riwayat[index];
+                                          var item = state.data[index];
                                           return Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 8, right: 8, top: 10),
@@ -509,22 +490,6 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
         return const Center(child: Text("Data Not Found"));
       }),
     );
-    // } else if (homeState is HomeIsLoading) {
-    //   return Container(
-    //     alignment: Alignment.center,
-    //     child: CircularProgressIndicator(),
-    //   );
-    // }
-    // return Container(
-    //   child: Text(
-    //     "Kosong",
-    //     style: TextStyle(
-    //       fontSize: 10.0,
-    //     ),
-    //   ),
-    // );
-    //     }
-    //   )
-    // );
+    
   }
 }

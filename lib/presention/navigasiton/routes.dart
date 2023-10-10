@@ -67,6 +67,7 @@ GoRouter appRouter(String path) {
         name: Routes.NavigasiBar,
         builder: (context, state) {
           BlocProvider.of<HomeCubit>(context).fecthHome();
+          BlocProvider.of<HistoryCubit>(context).fecthHistory();
           return const NavigasiBar(
             indexScreen: 0,
           );
@@ -93,29 +94,30 @@ GoRouter appRouter(String path) {
                   name: Routes.BankSampahScreen,
                   builder: (context, state) {
                     BlocProvider.of<BankSampahCubit>(context).fecthBankSampah();
+
                     return const BankSampahScreen();
                   },
                 ),
               ]),
           GoRoute(
-              path: "Profile",
-              name: Routes.Profile,
-              builder: (context, state) {
-                BlocProvider.of<HistoryCubit>(context).fecthHistory();
-                return const NavigasiBar(
-                  indexScreen: 1,
-                );
-              },
-              routes: [
-                GoRoute(
-                  path: "ChangeProfile",
-                  name: Routes.ChangeProfile,
-                  builder: (context, state) {
-                    final _userModel = state.extra as UserModel;
-                    return ChangeProfile(profileData: _userModel);
-                  },
-                ),
-              ]),
+            path: "Profile",
+            name: Routes.Profile,
+            builder: (context, state) {
+              return const NavigasiBar(
+                indexScreen: 1,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: "ChangeProfile",
+                name: Routes.ChangeProfile,
+                builder: (context, state) {
+                  final _userModel = state.extra as UserModel;
+                  return ChangeProfile(profileData: _userModel);
+                },
+              ),
+            ],
+          ),
         ]),
     GoRoute(
       path: "/LupaPassword",
