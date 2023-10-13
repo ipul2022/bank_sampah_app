@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -29,11 +28,11 @@ class Commons {
     return DateTime.parse(storage.getString('tokenExpiration') ?? '');
   }
 
-  void showSnackbarError(BuildContext context, String msg) {
+  void showSnackbarError(context, String msg) {
     showTopSnackBar(context, CustomSnackBar.error(message: msg));
   }
 
-  void showSnackbarInfo(BuildContext context, String msg) {
+  void showSnackbarInfo(context, String msg) {
     showTopSnackBar(context, CustomSnackBar.info(message: msg));
   }
 }

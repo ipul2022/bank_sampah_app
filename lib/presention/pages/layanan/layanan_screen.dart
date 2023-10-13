@@ -5,49 +5,22 @@ part of '../pages.dart';
 class LayananScreen extends StatefulWidget {
   const LayananScreen({super.key});
 
-
   @override
   State<LayananScreen> createState() => _LayananScreenState();
 }
 
 class _LayananScreenState extends State<LayananScreen>
-    with WidgetsBindingObserver {
+    {
   List<String> image = [
     "asset/images/langganan.png",
     "asset/images/hajatan.png",
     "asset/images/sekali_angkut.png",
     "asset/images/acara_lainnya.png",
+    "asset/images/acara_lainnya.png",
   ];
 
   NewInquiryModel? _addInquiry;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print("APP_STATE: $state");
-
-    if (state == AppLifecycleState.inactive) {
-      // user returned to our app
-      const LayananScreen();
-    } else if (state == AppLifecycleState.inactive) {
-      // app is inactive
-    } else if (state == AppLifecycleState.paused) {
-      // user quit our app temporally
-    } else if (state == AppLifecycleState.resumed) {
-      // app suspended
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,17 +52,15 @@ class _LayananScreenState extends State<LayananScreen>
             color: Colors.blue,
           ));
         } else if (state is LayananIsSuccess) {
-          
           return ListView.builder(
             itemCount: state.data.pick_up.length,
             itemBuilder: (context, index) {
               final data = state.data.pick_up[index];
-              final imageList = index < image.length
-                  ? image[index]
-                  : "placeholder_image_path.png";
-                  _addInquiry = NewInquiryModel (
-            data.layanan, data.price,
-          );
+              final imageList = image[index];
+              _addInquiry = NewInquiryModel(
+                data.layanan,
+                data.price,
+              );
 
               return Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),

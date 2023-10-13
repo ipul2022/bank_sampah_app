@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state is LoginIsError) {
               Commons().showSnackbarError(context, "Login Gagal");
             } else if (state is LoginSucces) {
-              Commons().showSnackbarInfo(context, "Login Berhasil");
+              // Commons().showSnackbarInfo(context, "Login Berhasil");
               context.read<AuthCubit>().checkToken();
               context.read<HomeCubit>().fecthHome();
               context.go('/NavigasiBar');
